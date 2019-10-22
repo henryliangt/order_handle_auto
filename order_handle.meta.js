@@ -13,3 +13,5 @@
 // @match        https://*.tokopedia.com/*
 // @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.meta.js
 // @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.user.js
+
+// ==/UserScript==
