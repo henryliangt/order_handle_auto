@@ -37,7 +37,7 @@ var JsBarcode = unsafeWindow.JsBarcode;
          console.log('Just 1 second');
          var url = window.location.href;
          if(url.includes('myshop_order?status')){
-             alert(url.split('?')[1].split("=")[1]);
+ //            alert(url.split('?')[1].split("=")[1]);
          setTimeout(function(){
              //
 
@@ -45,10 +45,10 @@ var JsBarcode = unsafeWindow.JsBarcode;
 
                  console.log(x.readystate);
                  x.open('GET', data_url, true);
-                 alert('hi');
+//                 alert('hi');
                  x.send();
-                 alert(x);
-                 alert(1);
+//                 alert(x);
+//                 alert(1);
                  usd = x.response;
                  console.log(x.response);
                  alert(x.response);
