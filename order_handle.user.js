@@ -51,7 +51,7 @@ var JsBarcode = unsafeWindow.JsBarcode;
 //                 alert(1);
                  usd = x.response;
                  console.log(x.response);
-                 alert(x.response);
+//                 alert(x.response);
                  console.log(x.responseURL);
 
                  return x;
