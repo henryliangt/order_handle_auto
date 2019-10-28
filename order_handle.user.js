@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tokopedia Bukalapak order barcode
 // @namespace    http://www.tiaria.id/
-// @version      0.12
+// @version      0.13
 // @description  Handle tokopedia orders
 // @author       Henry
 // @connect      www.tiaria.id
