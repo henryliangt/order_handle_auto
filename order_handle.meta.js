@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tokopedia order
 // @namespace    http://www.tiaria.id/
-// @version      0.11
+// @version      0.12
 // @description  Handle tokopedia orders
 // @author       Henry
 // @connect      www.tiaria.id
