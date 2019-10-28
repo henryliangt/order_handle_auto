@@ -44,12 +44,13 @@
              console.log(order_number);
              var bc = document.querySelector('div.transaction-slip > div.row > div.row-item > div.brand-logo > img');
              bc.removeAttribute('src');
+             bc.setAttribute('style', 'height: 58px')
              bc.setAttribute('id','n');
              setTimeout(function(){$("#n").JsBarcode(order_number,{
                  format: 'CODE128',
                  lineColor: "#0aa",
                  width: 20,
-                 height: 500,
+                 height: 800,
                  displayValue: false
              })},100)
          }else if (url.includes('invoice.pl')){
@@ -65,7 +66,7 @@
                  format: 'CODE128',
                  lineColor: "#0aa",
                  width: 20,
-                 height: 500,
+                 height: 1000,
                  displayValue: false
              })},500) }
 
