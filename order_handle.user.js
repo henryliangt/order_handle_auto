@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tokopedia Bukalapak order barcode &tkpd order update.
 // @namespace    http://www.tiaria.id/
-// @version      0.14
+// @version      0.15
 // @description  Updating tkpd order, insert bukalapak  tkpd order number barcode.
 // @author       HL
 // @connect      www.tiaria.id
