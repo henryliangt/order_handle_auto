@@ -246,7 +246,7 @@
               console.log('-------======------++++++');
         //      console.log(new_order);
                 }, 1000)
-}else if(1=2){
+}else if(1===2){
          console.log('new code in here.');
          }
 
