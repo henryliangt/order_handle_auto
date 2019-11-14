@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Order update
+// @name         Order update 1114
 // @namespace    http://www.tiaria.id/
-// @version      0.2
-// @description  Updating tkpd order, insert bukalapak  tkpd order number barcode.
+// @version      0.15
+// @description  Updating all order, insert bukalapak  tkpd order number barcode. download sku amount
 // @author       HL
 // @connect      www.tiaria.id
 // @connect      google.com
@@ -23,7 +23,7 @@
 // @match        https://merchant.blibli.com/MTA/neo/order/order-detail/?orderNo*
 // @match        *.zalora.co.id/order/index/order-detail*
 // @match        *.jd.id/*
-
+// @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
 // @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.meta.js
 // @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.user.js
@@ -634,7 +634,90 @@
                 }, 1000)
 
 
-         }else if(1===2){
+         }else if(window.location.href.includes('lazada.co.id/order/detail/')){                                    //handle LAZADA down...
+                  console.log('LAZADA');
+                  var header = 'o=lazada,';
+                  setTimeout(function(){
+                  var seller = document.querySelector('div.right-panel.lzd-header-panel > div.lzd-header-select.profile-select > div > div.section > span.bottom').textContent.replace('&','').trim() + ',';
+                  var info =  document.querySelectorAll('div.next-row.next-row-across.info-container > div.next-col.info-col > table.info-table > div > tr > td');
+                  var buyer = document.querySelectorAll('div:nth-child(3) > div.form-bd > div> span.cont');
+                  var new_order_number = document.querySelector('#root > div > div:nth-child(2) > h1').textContent.split(' No.')[1].trim() + ',';
+                          console.log(new_order_number);
+                  var new_order_consignee = info[3].textContent.trim().replace(',','').replace(/,|&|=/g,'_').trim()+ ',';
+                          console.log(new_order_consignee);
+                  var new_order_tel = info[5].textContent.trim()+ ',';
+                          console.log(new_order_tel);
+            //      var new_order_add = document.querySelectorAll('address.details-vertical')[1].textContent.replace(/,/g,'_').trim()+ ',';  // with many br span,
+                  var add = document.querySelector('#root > div > div.next-row.next-row-across.info-group-container > div:nth-child(4) > div > div > div > table');
+                  var new_order_add= add.textContent.replace(/,|&|=/g,'_').trim()+ ',';
+                          console.log(new_order_add);
+        //          var new_order_kurir = info[3].textContent.trim()+',';
+        //                  console.log(new_order_kurir);
+                  var new_order_kurir = 'lazada,';
+                  var new_order_booking =  'lazada,';
+     /*             var shipping_elem = document.querySelectorAll('div:nth-child(4) > div.form-bd > div > span.cont');
+                  if(shipping_elem[2]!==undefined & shipping_elem[2].textContent!==''){
+                             new_order_booking += shipping_elem[2].textContent+',';
+                          }else{new_order_booking += 'cs3,'};
+     */             console.log(new_order_booking);
+                          // assume 1 sku.
+                      var new_order_product = '';
+                      var new_order_sku ='';
+                      var new_order_price ='' ;
+                      var new_order_pcs =    '';
+                var sku_info  = document.querySelectorAll('table > tbody > tr > td');
+                var order_skus  = document.querySelectorAll('#root > div > div:nth-child(5) > div > div.next-table-body > table > tbody > tr.next-table-row.last.first')
+               for(var x=0; x < order_skus.length; x++){
+                  new_order_product += document.querySelectorAll('tr.next-table-row.last.first > td:nth-child(6) > div.next-table-cell-wrapper > div > p > span')[x].textContent.replace(/&|,|=/g,'').trim();
+                  new_order_sku += document.querySelectorAll('#root > div > div:nth-child(5) > div > div.next-table-body > table > tbody > tr.next-table-row.last.first > td:nth-child(4) > div.next-table-cell-wrapper > div > p > span')[x].textContent.replace(/&|,|=/g,'').trim();
+                  console.log(new_order_sku +'==' + new_order_product);
+                  new_order_pcs += '1';
+                  new_order_price +=   document.querySelectorAll('#root > div > div:nth-child(5) > div > div.next-table-body > table > tbody > tr.next-table-row.last.first > td:nth-child(8) > div.next-table-cell-wrapper > div > p > span')[x].textContent.replace('.00','').replace('Rp ','').replace(',','').replace(',','').trim();
+                   if(x+1<order_skus.length){
+                   new_order_product+='_';
+                       new_order_sku+='_';
+                       new_order_pcs+='_';
+                       new_order_price+='_';
+                   }else{ new_order_product+=',';
+                       new_order_sku+=',';
+                       new_order_pcs+=',';
+                       new_order_price+=',';}
+                   console.log(new_order_product+new_order_sku+new_order_pcs+new_order_price);
+                  };
+      //         var finance     = document.querySelectorAll(' div.subtotal-wrap > div.line > span.cont');
+      //        var pre_finance = document.querySelectorAll('table.table-details-vertical.table-currency > tbody > tr > td');
+
+                             var new_order_amount =     '';
+                             var new_order_shipping_fee = '';
+                             var new_order_commission = '0.1,';
+               //              console.log(finance.length);
+                             new_order_amount +=     info[9].textContent.replace('Rp ','').replace(',','').replace(',','').replace('.00','').trim() + ',';
+                             new_order_shipping_fee += info[11].textContent.replace('Rp ','').replace(',','').replace(',','').replace('.00','').trim() + ',';
+                  //          console.log(info);
+                  //          console.log(new_order_amount);
+                  //          console.log(sku_info);
+                  var new_order_pay =        info[17].textContent.replace('Rp ','').replace('.00','').replace(',','').replace(',','').trim() + ',';
+                  var new_order_time =       info[1].textContent.trim() + ',';
+                  var new_order_notes =      '_  ,';
+         //         new_order_notes+=buyer[buyer.length-1].textContent.replace(',','').replace(/,|&|=/g,'').trim()+',';
+                  header += (seller+new_order_number + new_order_consignee + new_order_tel + new_order_add + new_order_kurir + new_order_booking);
+                  header += (new_order_product + new_order_sku + new_order_pcs + new_order_price + new_order_amount);
+                  header += (new_order_shipping_fee + new_order_commission + new_order_pay + new_order_time + new_order_notes);
+                  console.log(get_update_order_url+header);
+              var xhr_update_jd_order = GM_xmlhttpRequest({
+                    method: "GET",
+                    url: get_update_order_url+header,
+                    onreadystatechange: function(res) {
+                    console.log('--GM_XHR_GET_updating order Request state changed to:-->' + res.readyState);
+                    },
+                    onload: function(res) {
+                        // Lets assume we updated it successfully...
+                      console.log('res+ typeof response:'+ res + typeof res);
+                        console.log('new_order=empty-->'+header);
+
+                     }, });  //update all orders together. may need to change later.
+                      },1000)                                                                                                                                    // handle jd up..
+                  }else if(1===2){
          console.log('new code in here.');
          }
 
