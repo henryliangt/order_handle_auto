@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Order update
+// @name         Order update 1114
 // @namespace    http://www.tiaria.id/
-// @version      0.2
-// @description  Updating tkpd order, insert bukalapak  tkpd order number barcode.
+// @version      0.21
+// @description  Updating all order, insert bukalapak  tkpd order number barcode. download sku amount
 // @author       HL
 // @connect      www.tiaria.id
 // @connect      google.com
@@ -23,7 +23,7 @@
 // @match        https://merchant.blibli.com/MTA/neo/order/order-detail/?orderNo*
 // @match        *.zalora.co.id/order/index/order-detail*
 // @match        *.jd.id/*
-
+// @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
 // @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.meta.js
 // @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.user.js
