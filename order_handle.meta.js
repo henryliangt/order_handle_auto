@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Tokopedia Bukalapak order barcode &tkpd order update.
+// @name         Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.15
+// @version      0.2
 // @description  Updating tkpd order, insert bukalapak  tkpd order number barcode.
 // @author       HL
 // @connect      www.tiaria.id
@@ -19,6 +19,11 @@
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
 // @match        https://*.tokopedia.com/*
+// @match        *.akulaku.com/*
+// @match        https://merchant.blibli.com/MTA/neo/order/order-detail/?orderNo*
+// @match        *.zalora.co.id/order/index/order-detail*
+// @match        *.jd.id/*
+
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
 // @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.meta.js
 // @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/order_handle.user.js
