@@ -366,10 +366,10 @@
                   // assuem 1 sku.
                   var sku_info  = document.querySelectorAll('div.row.row-space > div.col-sm-7.col-md-7.col-val > span');
                   var new_order_product =    document.querySelectorAll('#prd-name > div > span')[0].textContent.replace(/&/g,'') + ',';
-                  var new_order_sku =        document.querySelectorAll('#kode-sku > span')[0].textContent + ',';
-                  var new_order_pcs =        document.querySelectorAll('#qty > span')[0].textContent + ',';
-                  var new_order_price =      document.querySelectorAll('#harga-per-unit > div > span')[0].textContent.replace('Rp','').replace(',','').replace(',','') + ',';
-                  var new_order_amount =     sku_info[2].textContent.replace('Rp','').replace(',','').replace(',','') + ',';
+                  var new_order_sku     =    document.querySelectorAll('#kode-sku > span')[0].textContent + ',';
+                  var new_order_pcs     =    document.querySelectorAll('#qty > span')[0].textContent + ',';
+                  var new_order_price   =    document.querySelectorAll('#harga-per-unit > div > span')[0].textContent.replace('Rp','').replace(',','').replace(',','') + ',';
+                  var new_order_amount  =    sku_info[2].textContent.replace('Rp','').replace(',','').replace(',','') + ',';
                   var new_order_shipping_fee = 15000 + ',';
                   var new_order_commission = '0.2 ,';
                   //          console.log(info);
