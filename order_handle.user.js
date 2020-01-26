@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Order update 1114
 // @namespace    http://www.tiaria.id/
-// @version      0.21
+// @version      0.22
 // @description  Updating all order, insert bukalapak  tkpd order number barcode. download sku amount
 // @author       HL
 // @connect      www.tiaria.id
@@ -611,22 +611,23 @@
                     },
                 onload: function(res) {
                     // Lets assume we get JSON back...
-
-                    document.querySelector('div.css-1to6rv9 > span').textContent = res.response.slice(0,20);
                     stock_list = res.response;
+                    document.querySelector('div.css-1yfh3sz > div.left-section > span').textContent = stock_list.slice(0,30);
                     stock_list = stock_list.split(',');
                     console.log(stock_list);
-                    sku_elem = document.querySelectorAll('div.product-list__name-wrapper.mb-8 > span');
+                    console.log(stock_list.indexOf('AKE053'));
+                    sku_elem = document.querySelectorAll('div.css-133r68y > div > div> div.product-info > div.product-sku');
                     for(var i=0; i<sku_elem.length; i++){
                         console.log(' ----------->real find');
                         var order = sku_elem[i].textContent;
-                        var order_sku = sku_elem[i].textContent.split(' - ')[1];
+                        var order_sku = sku_elem[i].textContent;
                         order_sku_amount = stock_list[(stock_list.indexOf(order_sku)+1)];
-                        order = order.replace('SKU', order_sku_amount);
+                     //   order = order.replace('SKU', order_sku_amount);
+                        order += '=';
+                        order += order_sku_amount;
                         sku_elem[i].textContent = order;
                         sku_elem[i].style="font-size:150%; color:black; font-family:verdana;"   }; },});
 }
-
 
 
               console.log('-------======------++++++');

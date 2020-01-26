@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Order update 1114
 // @namespace    http://www.tiaria.id/
-// @version      0.21
+// @version      0.22
 // @description  Updating all order, insert bukalapak  tkpd order number barcode. download sku amount
 // @author       HL
 // @connect      www.tiaria.id
