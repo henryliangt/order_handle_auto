@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Tokopedia Barcode + Order update
+// @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.13
+// @version      0.14
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -58,59 +58,69 @@
             var new_order_add                = '';
             new_order_add                   += new_order_contact_elem.innerHTML.split('<br>')[0].trim();
             new_order_add                   += '..';
-            new_order_add                   +=  new_order_contact_elem.innerHTML.split('<br>')[1].trim()
+            new_order_add                   += new_order_contact_elem.innerHTML.split('<br>')[1].trim()
             console.log(new_order_contact_elem.innerHTML.split('<br>')[2].trim());
             var new_order_tel                ='';
             new_order_tel                   += new_order_contact_elem.innerHTML.split('<br>')[2].trim();
-            var new_order_kurir_elem         =      document.querySelector('body > div.content-area > div > table > tbody > tr:nth-child(3) > td > div:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(1)');                           var new_order_booking =    document.querySelectorAll('div.section >  span:nth-child(5)');                           //maybe no booking
-            console.log(new_order_kurir_elem.textContent.split('(')[0]);
+            var new_order_kurir_elem         = document.querySelector('body > div.content-area > div > table > tbody > tr:nth-child(3) > td > div:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(1)');                           var new_order_booking =    document.querySelectorAll('div.section >  span:nth-child(5)');                           //maybe no booking
             var new_order_kurir              = new_order_kurir_elem.textContent.split('(')[0];
+            console.log(new_order_kurir);
             var new_order_commission         = '0';
-            var new_order_time_elem          =       document.querySelectorAll(' table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(5) > td:nth-child(2)');
+            var new_order_time_elem          = document.querySelectorAll(' table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(5) > td:nth-child(2)');
             var new_order_time               = new_order_time_elem[0].textContent;
             var new_order_shipping_elem      = document.querySelector('body > div.content-area > div > table > tbody > tr:nth-child(3) > td > div:nth-child(2) > table > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2)');
-            console.log(new_order_shipping_elem.textContent.split('.').join('').replace('Rp','').trim());
             var new_order_shipping           = new_order_shipping_elem.textContent.split('.').join('').replace('Rp','').trim();
-            var new_order_pay_elem           =        document.querySelectorAll('table > tbody > tr> td > table > tbody > tr > td > table > tbody > tr > td');
-            var new_order_pay = new_order_pay_elem[new_order_pay_elem.length-1].textContent.split('.').join('').replace('Rp','').trim();
+            console.log(new_order_shipping);
+            var new_order_pay_elem           = document.querySelectorAll('table > tbody > tr> td > table > tbody > tr > td > table > tbody > tr > td');
+            var new_order_pay                = new_order_pay_elem[new_order_pay_elem.length-1].textContent.split('.').join('').replace('Rp','').trim();
             console.log(new_order_pay);
             // var new_order_amount =     document.querySelectorAll('table > tbody > tr:nth-child(4) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             // console.log(new_order_amount[0].textContent.split('.').join('').replace('Rp',''));
             var new_order_resi_elem          =       document.querySelector('tr:nth-child(2) > td:nth-child(1) > div:nth-child(3) > span');
             var new_order_resi               = '';
-            if(new_order_resi_elem){new_order_resi=new_order_resi_elem.textContent;console.log(new_order_resi);};
-            var order_rows                   =    document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
+            if(new_order_resi_elem){
+                new_order_resi               = new_order_resi_elem.textContent;console.log(new_order_resi);
+            };
+            var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
-                var new_order_product_elem  =    document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
+                var new_order_product_elem  = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
                 var new_order_product       = new_order_product_elem[0].textContent;
                 var new_order_product_url   = new_order_product_elem[0].href;
-                console.log(new_order_product_elem[0].href);
-                var new_order_sku_elem      =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
-                console.log(new_order_sku_elem[0].textContent.replace('SKU - ',''));
+                console.log(new_order_product_url);
+                var new_order_sku_elem      = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
                 var new_order_sku = new_order_sku_elem[0].textContent.replace('SKU - ','').trim()
+                console.log(new_order_sku);
                 var new_order_pcs_elem      =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
-                console.log(new_order_pcs_elem[0].textContent);
                 var new_order_pcs = new_order_pcs_elem[0].textContent.trim();
-                var new_order_price_elem    =      document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
-                console.log(new_order_price_elem[0].textContent.split('.').join('').replace('Rp',''));
+                console.log(new_order_pcs);
+                var new_order_price_elem    = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
                 var new_order_price         = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
-                var new_order_notes_elem    =      document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
+                console.log(new_order_price);
+
+                var new_order_notes_elem    = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
                 var new_order_notes         =  '';
                 if(new_order_notes_elem){
                     var new_order_notes = new_order_notes_elem[new_order_notes_elem.length-1].textContent.trim();
-                    console.log(new_order_notes);
                 }
+                console.log(new_order_notes);
                                    }else{
-                    var new_order_product     = '';
-                    var new_order_product_url = '';
-                    var new_order_notes       =  '';
-                    var new_order_sku         = '';
-                    var new_order_pcs         = '';
-                    var new_order_price       = '';
+                    var new_order_product         = '';
+                    var new_order_product_url     = '';
+                    var new_order_notes           =  '';
+                    var new_order_sku             = '';
+                    var new_order_pcs             = '';
+                    var new_order_price           = '';
                     // console.log(order_rows);
+                    var new_order_product_arr     = [];
+                    var new_order_product_url_arr = [];
+                    var new_order_notes_arr       = [];
+                    var new_order_sku_arr         = [];
+                    var new_order_pcs_arr         = [];
+                    var new_order_price_arr       = [];
+
 
                     for(var i=1; i < order_rows.length; i++){
                         if(order_rows[i].childNodes.length > 6){
@@ -140,7 +150,7 @@
                  }
             var order_detail = {
                 'plt'         : plt,
-                'seller'      :seller,
+                'seller'      : seller,
                 'order_number': new_order_number,
                 'order_url'   : new_order_url,
                 'buyer'       : new_order_consignees.textContent,
@@ -163,31 +173,27 @@
             }
             console.log(order_detail);
             console.log(typeof order_detail);
-            var order_data = new FormData();
-            order_data.append('order_number','555eeee');
             var tkpd_order_up = GM_xmlhttpRequest({
-                method  : 'POST',
-                url     : 'http://adakok.com/api/orders/',
-                headers :   { "Content-Type": "application/json; charset=utf-8"},
-                data    : JSON.stringify(order_detail),
+                method  :           'POST',
+                url     :           'http://adakok.com/api/orders/',
+                headers :           { "Content-Type": "application/json; charset=utf-8"},
+                data    :           JSON.stringify(order_detail),
                 onreadystatechange: function(res){console.log(res.readyState)},
-                onload  : function(res){console.log(res.responseText)},
-            })
-
-
-             var elem         = $("tr > td > table > tbody > tr > td > span")[1];
-             var order_number = elem.textContent;
-             console.log(order_number);
-             var bc           = document.querySelector('td > img');
-             bc.removeAttribute('src');
-             bc.setAttribute('id','n');
-             setTimeout(function(){$("#n").JsBarcode(order_number,{
-                 format: 'CODE128',
-                 lineColor: "#0aa",
-                 width: 20,
-                 height: 500,
-                 displayValue: false
-             })},500) }
+                onload  :           function(res){console.log(res.responseText)},
+            });
+            var elem         = $("tr > td > table > tbody > tr > td > span")[1];
+            var order_number = elem.textContent;
+            console.log(order_number);
+            var bc           = document.querySelector('td > img');
+            bc.removeAttribute('src');
+            bc.setAttribute('id','n');
+            setTimeout(function(){$("#n").JsBarcode(new_order_number,{
+                format: 'CODE128',
+                lineColor: "#0aa",
+                width: 20,
+                height: 500,
+                displayValue: false
+            })},500) }
 
     };
 })();
