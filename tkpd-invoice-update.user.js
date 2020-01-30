@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.14
+// @version      0.15
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -129,17 +129,17 @@
                             new_order_product      += single_product + ' | ';
                             new_order_product_arr.push(single_product);
                             // new_order_product      += ' | ';
-                            console.log(new_order_product + new_order_product_arr);
+                            console.log(new_order_product + "array --->" + new_order_product_arr);
                             var single_product_url  = order_rows[i].querySelector('td > a').href
                             new_order_product_url  += single_product_url + ' | ';
                             new_order_product_url_arr.push(single_product_url);
                             // new_order_product_url  += ' | ';
-                            console.log(new_order_product_url + new_order_product_url_arr);
+                            console.log(new_order_product_url + "array --->" + new_order_product_url_arr);
                             var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim()
                             new_order_sku          += single_sku + ' | ';
                             new_order_sku_arr.push(single_sku);
                             // new_order_sku          += ' | ';
-                            console.log(new_order_sku + new_order_sku_arr);
+                            console.log(new_order_sku + "array --->" + new_order_sku_arr);
                             var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                             if(notes_elem){
                                 var single_notes    = notes_elem.textContent.trim()
@@ -148,17 +148,17 @@
 
                                 // new_order_notes    += ' |  ';
                             };
-                            console.log(new_order_notes + new_order_notes_arr);
+                            console.log(new_order_notes + "array --->" + new_order_notes_arr);
                             var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim()
                             new_order_pcs          += single_pcs + ' | ';
                             // new_order_pcs          += ' | ';
                             new_order_pcs_arr.push(new_order_pcs);
-                            console.log(new_order_pcs + new_order_pcs_arr);
+                            console.log(new_order_pcs + "array --->" + new_order_pcs_arr);
                             var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim()
                             new_order_price        += single_price + ' | ';
                             // new_order_price        += ' | ';
                             new_order_price_arr.push(single_price);
-                            console.log(new_order_price + new_order_price_arr);
+                            console.log(new_order_price + "array --->" + new_order_price_arr);
                          }
                      }
                  }
