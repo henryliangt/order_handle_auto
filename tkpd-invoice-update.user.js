@@ -86,26 +86,58 @@
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
-                var new_order_product_elem  = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
-                var new_order_product       = new_order_product_elem[0].textContent;
-                var new_order_product_url   = new_order_product_elem[0].href;
+                var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
+                var new_order_product        = new_order_product_elem[0].textContent;
+                var new_order_product_url    = new_order_product_elem[0].href;
                 console.log(new_order_product_url);
-                var new_order_sku_elem      = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
+                var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
                 var new_order_sku = new_order_sku_elem[0].textContent.replace('SKU - ','').trim()
                 console.log(new_order_sku);
-                var new_order_pcs_elem      =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
-                var new_order_pcs = new_order_pcs_elem[0].textContent.trim();
-                console.log(new_order_pcs);
-                var new_order_price_elem    = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
-                var new_order_price         = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
+                var new_order_pc_elem       =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
+                var new_order_pc = new_order_pc_elem[0].textContent.trim();
+                console.log(new_order_pc);
+                var new_order_price_elem     = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
+                var new_order_price          = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
                 console.log(new_order_price);
-
-                var new_order_notes_elem    = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
-                var new_order_notes         =  '';
-                if(new_order_notes_elem){
-                    var new_order_notes = new_order_notes_elem[new_order_notes_elem.length-1].textContent.trim();
+                var new_order_notes_elem     = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
+                var new_order_note          =  '';
+                if(new_order_note_elem){
+                    var new_order_note = new_order_note_elem[new_order_note_elem.length-1].textContent.trim();
                 }
                 console.log(new_order_notes);
+                var order_detail = {
+                'plt'         : plt,
+                'seller'      : seller,
+                'order_number': new_order_number,
+                'order_url'   : new_order_url,
+                'buyer'       : new_order_consignees.textContent,
+                'tel'         : new_order_tel,
+                'add'         : new_order_add,
+                'kurir'       : new_order_kurir,
+                'resi'        : new_order_resi,
+                'product'     : new_order_product,
+                'product_link': new_order_product_url,
+                'sku'         : new_order_sku,
+                'pc'         : new_order_pc,
+                'price'       : new_order_price,
+                'amount'      : new_order_amount,
+                'shipping'    : new_order_shipping,
+                'commission'  : new_order_commission,
+                'income'      : new_order_pay,
+                'time'        : new_order_time,
+                'note'       : new_order_note,
+                'status'      : '10' ,
+                }
+                console.log(order_detail);
+                console.log(typeof order_detail);
+                var tkpd_order_up = GM_xmlhttpRequest({
+                    method  :           'POST',
+                    url     :           'http://adakok.com/api/orders/',
+                    headers :           { "Content-Type": "application/json; charset=utf-8"},
+                    data    :           JSON.stringify(order_detail),
+                    onreadystatechange: function(res){console.log(res.readyState)},
+                    onload  :           function(res){console.log(res.responseText)},
+                });
                                    }else{
                     var new_order_product         = '';
                     var new_order_product_url     = '';
@@ -151,7 +183,7 @@
                             var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
                             new_order_pcs          += single_pcs + ' | ';
                             // new_order_pcs          += ' | ';
-                            new_order_pcs_arr.push(new_order_pcs);
+                            new_order_pcs_arr.push(single_pcs);
                             console.log("Array --->" + new_order_pcs_arr);
                             var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
                             new_order_price        += single_price + ' | ';
@@ -179,7 +211,7 @@
                     if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-3)};
                     console.log(new_order_price);
                  }
-            var order_detail = {
+            var order_details = {
                 'plt'         : plt,
                 'seller'      : seller,
                 'order_number': new_order_number,
@@ -202,13 +234,13 @@
                 'notes'       : new_order_notes,
                 'status'      : '10' ,
             }
-            console.log(order_detail);
-            console.log(typeof order_detail);
-            var tkpd_order_up = GM_xmlhttpRequest({
+            console.log(order_details);
+            console.log(typeof order_details);
+            var tkpd_orders_up = GM_xmlhttpRequest({
                 method  :           'POST',
                 url     :           'http://adakok.com/api/orders/',
                 headers :           { "Content-Type": "application/json; charset=utf-8"},
-                data    :           JSON.stringify(order_detail),
+                data    :           JSON.stringify(order_details),
                 onreadystatechange: function(res){console.log(res.readyState)},
                 onload  :           function(res){console.log(res.responseText)},
             });
