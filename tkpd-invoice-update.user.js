@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.22
+// @version      0.23
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -120,7 +120,16 @@
                     new_order_note           = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
                 }
                 console.log(new_order_note);
-                var order_detail = {
+
+                // push into array with only one item
+                new_order_product_arr.push(new_order_product);
+                new_order_product_url_arr.push(new_order_product_url);
+                new_order_sku_arr.push(new_order_sku);
+                new_order_pcs_arr.push(new_order_pc);
+                new_order_note_arr.push(new_order_note);
+                new_order_price_arr.push(new_order_price);
+
+	            var order_detail = {
                 'plt'         : plt,
                 'seller'      : seller,
                 'order_number': new_order_number,
@@ -151,12 +160,12 @@
                 'prices'      : new_order_price,
                 'notes'        : new_order_note,
                  // or one item in array
-                'product_arr'       : new_order_product_arr.push(new_order_product),
-                'product_link_arr'  : new_order_product_url_arr.push(new_order_product_url),
-                'sku_arr'            : new_order_sku_arr.push(new_order_sku),
-                'pc_arr'            : new_order_pcs_arr.push(new_order_pc),
-                'note_arr'          : new_order_note_arr.push(new_order_note),
-                'price_arr'          : new_order_price_arr.push(new_order_price),
+                'product_arr'       : new_order_product_arr,
+                'product_link_arr'  : new_order_product_url_arr,
+                'sku_arr'            : new_order_sku_arr,
+                'pc_arr'            : new_order_pcs_arr,
+                'note_arr'          : new_order_note_arr,
+                'price_arr'          : new_order_price_arr,
                 };
                 console.log(order_detail);
                 console.log(typeof order_detail);
