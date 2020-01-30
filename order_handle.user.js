@@ -32,7 +32,7 @@
 // ==/UserScript==
 (function() {
     'use strict';
-    var stock_list, sku_elem, quantity,order_sku_amount = 'n/a' ;   //var for xml updating order list. first trying commit by git.
+    var stock_list, sku_elem, quantity,order_sku_amount = 'n/a' ;   //var for xml updating order list. first trying commit.
     window.onload=function(){
         console.log('on load');
         var get_update_order_url = 'https://script.google.com/a/tiaria.id/macros/s/AKfycbzli3fgBxQSlMXbuN3_BZZh0m6loc_TNXosJ-Xqhw7y/dev?';   //developement url.
