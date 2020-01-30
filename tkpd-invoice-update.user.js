@@ -20,6 +20,7 @@
 // @require      https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        GM_openInTab
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
 // @match        https://*.tokopedia.com/*
