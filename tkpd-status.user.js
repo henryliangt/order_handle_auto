@@ -38,27 +38,27 @@
 	window.onload=function() {
 		if (window.location.href.includes('seller.tokopedia.com/myshop_order')) {                                                                                                   //handle tkpd order updating down
 			console.log(' yes, seller.tokopedia.com/myshop_order included,,, starting XHR download stock now....');
-			var stock_list_xhr = GM_xmlhttpRequest({
-				method: "GET",
-				url: 'https://script.google.com/macros/s/AKfycbxFDzosHE4xfVdbkbR7ixdjg3zsSyQE-ZTAcg6equ5qDKzZnS7v/exec',   //version 1, simple test , get stock_list done.
-				onreadystatechange: function (res) {console.log('------GM_XHR Request state changed to:------>>>>' + res.readyState);},
-				onload: function (res) {
-					// Lets assume we get JSON back...
-					document.querySelector('#merchant-root > div > div > div.css-1yfh3sz > div.left-section > span').textContent = res.response.slice(0, 40);
-					var stock_list = res.response;
-					stock_list = stock_list.split(',');
-					var sku_elem = document.querySelectorAll('div > div> div.product-info > div.product-sku');
-					for (var i = 0; i < sku_elem.length; i++) {
-						console.log(' ----------->real find');
-						var order = sku_elem[i].textContent;
-						var order_sku = sku_elem[i].textContent.split(' - ')[1];
-						var order_sku_amount = stock_list[(stock_list.indexOf(order_sku) + 1)];
-						order = order.replace('SKU', order_sku_amount);
-						sku_elem[i].textContent = order;
-						sku_elem[i].style = "font-size:150%; color:black; font-family:verdana;"
-					}
-				},
-			});
+			// var stock_list_xhr = GM_xmlhttpRequest({
+			// 	method: "GET",
+			// 	url: 'https://script.google.com/macros/s/AKfycbxFDzosHE4xfVdbkbR7ixdjg3zsSyQE-ZTAcg6equ5qDKzZnS7v/exec',   //version 1, simple test , get stock_list done.
+			// 	onreadystatechange: function (res) {console.log('------GM_XHR Request state changed to:------>>>>' + res.readyState);},
+			// 	onload: function (res) {
+			// 		// Lets assume we get JSON back...
+			// 		document.querySelector('#merchant-root > div > div > div.css-1yfh3sz > div.left-section > span').textContent = res.response.slice(0, 40);
+			// 		var stock_list = res.response;
+			// 		stock_list = stock_list.split(',');
+			// 		var sku_elem = document.querySelectorAll('div > div> div.product-info > div.product-sku');
+			// 		for (var i = 0; i < sku_elem.length; i++) {
+			// 			console.log(' ----------->real find');
+			// 			var order = sku_elem[i].textContent;
+			// 			var order_sku = sku_elem[i].textContent.split(' - ')[1];
+			// 			var order_sku_amount = stock_list[(stock_list.indexOf(order_sku) + 1)];
+			// 			order = order.replace('SKU', order_sku_amount);
+			// 			sku_elem[i].textContent = order;
+			// 			sku_elem[i].style = "font-size:150%; color:black; font-family:verdana;"
+			// 		}
+			// 	},
+			// });
 
 			setTimeout(function () {
 				function stock_down() {
@@ -75,7 +75,7 @@
 						onload: function (res) {
 							// Lets assume we get JSON back...
 							stock_list = res.response;
-							document.querySelector('div.css-1yfh3sz > div.left-section > span').textContent = stock_list.slice(0, 30);
+							document.querySelector('div.css-1yfh3sz > div.left-section > span').textContent = stock_list.slice(0, 40);
 							stock_list = stock_list.split(',');
 							console.log(stock_list);
 							console.log(stock_list.indexOf('AKE053'));
