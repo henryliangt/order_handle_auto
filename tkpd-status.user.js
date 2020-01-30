@@ -97,6 +97,7 @@
 
 
 				console.log('-------======------++++++');
+				GM.openInTab("http://www.tokopedia.com/");
 			}, 1000)
 		}
 	}
