@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.19
+// @version      0.20
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -44,7 +44,7 @@
             // document.querySelector('table > tbody > tr:nth-child(4) > td:nth-child(2) > a').textContent = 'Tiaria Great Jewelry';
             var seller                       = document.querySelector('table > tbody > tr:nth-child(4) > td:nth-child(2) > a').textContent.trim();
             var new_order                    = '';
-            var new_order_numbers_elem       =    $("tr > td > table > tbody > tr > td > span")[1];
+            var new_order_numbers_elem       = $("tr > td > table > tbody > tr > td > span")[1];
             var new_order_number             = new_order_numbers_elem.textContent;
             var new_order_url                = window.location.href;
             console.log(new_order_url);
@@ -52,7 +52,7 @@
             console.log(plt);
             var new_order_consignees         = document.querySelector('body > div.content-area > div > table > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > span');
             console.log(new_order_consignees.textContent);
-            var new_order_contact_elem       =        document.querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td > div');     //tel add 3 in 1
+            var new_order_contact_elem       = document.querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td > div');     //tel add 3 in 1
             console.log(new_order_contact_elem.innerHTML.split('<br>')[0].trim());
             console.log(new_order_contact_elem.innerHTML.split('<br>')[1].trim());
             var new_order_add                = '';
@@ -104,7 +104,7 @@
                 if(new_order_note_elem){
                     var new_order_note       = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
                 }
-                console.log(new_order_notes);
+                console.log(new_order_note);
                 var order_detail = {
                 'plt'         : plt,
                 'seller'      : seller,
@@ -138,80 +138,79 @@
                     onreadystatechange: function(res){console.log(res.readyState)},
                     onload  :           function(res){console.log(res.responseText)},
                 });
-                                   }else{
-                    var new_order_product         = '';
-                    var new_order_product_url     = '';
-                    var new_order_notes           = '';
-                    var new_order_sku             = '';
-                    var new_order_pcs             = '';
-                    var new_order_price           = '';
-                    // console.log(order_rows);
-                    var new_order_product_arr     = [];
-                    var new_order_product_url_arr = [];
-                    var new_order_notes_arr       = [];
-                    var new_order_sku_arr         = [];
-                    var new_order_pcs_arr         = [];
-                    var new_order_price_arr       = [];
+            }else{
+                var new_order_product         = '';
+                var new_order_product_url     = '';
+                var new_order_notes           = '';
+                var new_order_sku             = '';
+                var new_order_pcs             = '';
+                var new_order_price           = '';
+                // console.log(order_rows);
+                var new_order_product_arr     = [];
+                var new_order_product_url_arr = [];
+                var new_order_notes_arr       = [];
+                var new_order_sku_arr         = [];
+                var new_order_pcs_arr         = [];
+                var new_order_price_arr       = [];
 
 
-                    for(var i=1; i < order_rows.length; i++){
-                        if(order_rows[i].childNodes.length > 6){
-                            // console.log(order_rows[i].childNodes);
-                            var single_product     = order_rows[i].querySelector('td > a').textContent.replace(',','_');
-                            new_order_product      += single_product + ' | ';
-                            new_order_product_arr.push(single_product);
-                            // new_order_product      += ' | ';
-                            console.log("Array --->" + new_order_product_arr);
-                            var single_product_url  = order_rows[i].querySelector('td > a').href.replace(',','_');
-                            new_order_product_url  += single_product_url + ' | ';
-                            new_order_product_url_arr.push(single_product_url);
-                            // new_order_product_url  += ' | ';
-                            console.log("Array --->" + new_order_product_url_arr);
-                            var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
-                            new_order_sku          += single_sku + ' | ';
-                            new_order_sku_arr.push(single_sku);
-                            // new_order_sku          += ' | ';
-                            console.log("Array --->" + new_order_sku_arr);
-                            var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
-                            if(notes_elem){
-                                var single_notes    = notes_elem.textContent.trim().replace(',','_');
-                                new_order_notes    += single_notes + ' | ';
-                                new_order_notes_arr.push(single_notes);
-                                // new_order_notes    += ' |  ';
-                            };
-                            console.log("Array --->" + new_order_notes_arr);
-                            var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
-                            new_order_pcs          += single_pcs + ' | ';
-                            // new_order_pcs          += ' | ';
-                            new_order_pcs_arr.push(single_pcs);
-                            console.log("Array --->" + new_order_pcs_arr);
-                            var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
-                            new_order_price        += single_price + ' | ';
-                            // new_order_price        += ' | ';
-                            new_order_price_arr.push(single_price);
-                            console.log("Array --->" + new_order_price_arr);
-                         };
+                for(var i=1; i < order_rows.length; i++){
+                    if(order_rows[i].childNodes.length > 6){
+                        // console.log(order_rows[i].childNodes);
+                        var single_product     = order_rows[i].querySelector('td > a').textContent.replace(',','_');
+                        new_order_product      += single_product + ' | ';
+                        new_order_product_arr.push(single_product);
+                        // new_order_product      += ' | ';
+                        console.log("Array --->" + new_order_product_arr);
+                        var single_product_url  = order_rows[i].querySelector('td > a').href.replace(',','_');
+                        new_order_product_url  += single_product_url + ' | ';
+                        new_order_product_url_arr.push(single_product_url);
+                        // new_order_product_url  += ' | ';
+                        console.log("Array --->" + new_order_product_url_arr);
+                        var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                        new_order_sku          += single_sku + ' | ';
+                        new_order_sku_arr.push(single_sku);
+                        // new_order_sku          += ' | ';
+                        console.log("Array --->" + new_order_sku_arr);
+                        var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
+                        if(notes_elem){
+                            var single_notes    = notes_elem.textContent.trim().replace(',','_');
+                            new_order_notes    += single_notes + ' | ';
+                            new_order_notes_arr.push(single_notes);
+                            // new_order_notes    += ' |  ';
+                        };
+                        console.log("Array --->" + new_order_notes_arr);
+                        var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
+                        new_order_pcs          += single_pcs + ' | ';
+                        // new_order_pcs          += ' | ';
+                        new_order_pcs_arr.push(single_pcs);
+                        console.log("Array --->" + new_order_pcs_arr);
+                        var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
+                        new_order_price        += single_price + ' | ';
+                        // new_order_price        += ' | ';
+                        new_order_price_arr.push(single_price);
+                        console.log("Array --->" + new_order_price_arr);
                      };
-                    console.log(new_order_product);
-                    if(new_order_product.endsWith(' | ')){new_order_product=new_order_product.slice(0,new_order_product.length-3)};
-                    console.log(new_order_product);
-                    console.log(new_order_product_url);
-                    if(new_order_product_url.endsWith(' | ')){new_order_product_url=new_order_product_url.slice(0,new_order_product_url.length-3)};
-                    console.log(new_order_product_url);
-                    console.log(new_order_notes);
-                    if(new_order_notes.endsWith(' | ')){new_order_notes=new_order_notes.slice(0,new_order_notes.length-3)};
-                    console.log(new_order_notes);
-                    console.log(new_order_sku);
-                    if(new_order_sku.endsWith(' | ')){new_order_sku=new_order_sku.slice(0,new_order_sku.length-3)};
-                    console.log(new_order_sku);
-                    console.log(new_order_pcs);
-                    if(new_order_pcs.endsWith(' | ')){new_order_pcs=new_order_pcs.slice(0,new_order_pcs.length-3)};
-                    console.log(new_order_pcs);
-                    console.log(new_order_price);
-                    if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-3)};
-                    console.log(new_order_price);
-                 }
-            var order_details = {
+                 };
+                console.log(new_order_product);
+                if(new_order_product.endsWith(' | ')){new_order_product=new_order_product.slice(0,new_order_product.length-3)};
+                console.log(new_order_product);
+                console.log(new_order_product_url);
+                if(new_order_product_url.endsWith(' | ')){new_order_product_url=new_order_product_url.slice(0,new_order_product_url.length-3)};
+                console.log(new_order_product_url);
+                console.log(new_order_notes);
+                if(new_order_notes.endsWith(' | ')){new_order_notes=new_order_notes.slice(0,new_order_notes.length-3)};
+                console.log(new_order_notes);
+                console.log(new_order_sku);
+                if(new_order_sku.endsWith(' | ')){new_order_sku=new_order_sku.slice(0,new_order_sku.length-3)};
+                console.log(new_order_sku);
+                console.log(new_order_pcs);
+                if(new_order_pcs.endsWith(' | ')){new_order_pcs=new_order_pcs.slice(0,new_order_pcs.length-3)};
+                console.log(new_order_pcs);
+                console.log(new_order_price);
+                if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-3)};
+                console.log(new_order_price);
+                var order_details = {
                 'plt'         : plt,
                 'seller'      : seller,
                 'order_number': new_order_number,
@@ -233,17 +232,18 @@
                 'time'        : new_order_time,
                 'notes'       : new_order_notes,
                 'status'      : '10' ,
-            }
-            console.log(order_details);
-            console.log(typeof order_details);
-            var tkpd_orders_up = GM_xmlhttpRequest({
-                method  :           'POST',
-                url     :           'http://adakok.com/api/orders/',
-                headers :           { "Content-Type": "application/json; charset=utf-8"},
-                data    :           JSON.stringify(order_details),
-                onreadystatechange: function(res){console.log(res.readyState)},
-                onload  :           function(res){console.log(res.responseText)},
-            });
+                }
+                console.log(order_details);
+                console.log(typeof order_details);
+                var tkpd_orders_up = GM_xmlhttpRequest({
+                    method  :           'POST',
+                    url     :           'http://adakok.com/api/orders/',
+                    headers :           { "Content-Type": "application/json; charset=utf-8"},
+                    data    :           JSON.stringify(order_details),
+                    onreadystatechange: function(res){console.log(res.readyState)},
+                    onload  :           function(res){console.log(res.responseText)},
+                });
+                 }
             var elem         = $("tr > td > table > tbody > tr > td > span")[1];
             var order_number = elem.textContent;
             console.log(order_number);
