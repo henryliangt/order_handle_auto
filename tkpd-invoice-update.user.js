@@ -125,25 +125,25 @@
                     for(var i=1; i < order_rows.length; i++){
                         if(order_rows[i].childNodes.length > 6){
                             // console.log(order_rows[i].childNodes);
-                            new_order_product      += order_rows[i].querySelector('td > a').textContent;
-                            new_order_product      += ' | ';
+                            new_order_product      += order_rows[i].querySelector('td > a').textContent + ' | ';
+                            // new_order_product      += ' | ';
                             console.log(new_order_product);
-                            new_order_product_url  += order_rows[i].querySelector('td > a').href;
-                            new_order_product_url  += ' | ';
+                            new_order_product_url  += order_rows[i].querySelector('td > a').href + ' | ';
+                            // new_order_product_url  += ' | ';
                             console.log(new_order_product_url);
-                            new_order_sku          += order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim();
-                            new_order_sku          += ' | ';
+                            new_order_sku          += order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim() + ' | ';
+                            // new_order_sku          += ' | ';
                             console.log(new_order_sku);
                             var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                             if(notes_elem){
-                                new_order_notes    += notes_elem.textContent.trim();
-                                new_order_notes    += ' |  ';
+                                new_order_notes    += notes_elem.textContent.trim() + ' | ';
+                                // new_order_notes    += ' |  ';
                             };
-                            new_order_pcs          += order_rows[i].querySelectorAll('td')[1].textContent.trim();
-                            new_order_pcs          += ' | ';
+                            new_order_pcs          += order_rows[i].querySelectorAll('td')[1].textContent.trim() + ' | ';
+                            // new_order_pcs          += ' | ';
                             console.log(new_order_pcs);
-                            new_order_price        += order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim();
-                            new_order_price        += ' | ';
+                            new_order_price        += order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim() + ' | ';
+                            // new_order_price        += ' | ';
                             console.log(new_order_price);
                          }
                      }
