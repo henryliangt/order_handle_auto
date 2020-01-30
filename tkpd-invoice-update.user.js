@@ -73,7 +73,7 @@
             var new_order_add                = '';
             new_order_add                   += new_order_contact_elem.innerHTML.split('<br>')[0].trim();
             new_order_add                   += '..';
-            new_order_add                   += new_order_contact_elem.innerHTML.split('<br>')[1].trim()
+            new_order_add                   += new_order_contact_elem.innerHTML.split('<br>')[1].trim();
             console.log(new_order_contact_elem.innerHTML.split('<br>')[2].trim());
             var new_order_tel                ='';
             new_order_tel                   += new_order_contact_elem.innerHTML.split('<br>')[2].trim();
@@ -95,8 +95,8 @@
             var new_order_resi               = '';
             if(new_order_resi_elem){
                 new_order_resi               = new_order_resi_elem.textContent;console.log(new_order_resi).replace(',','_');
-            };
-            var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
+            }
+	        var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
@@ -143,19 +143,20 @@
                 'note'        : new_order_note,
                 'status'      : '10' ,
 
+                 // single product, also update as strings = all in one column
                 'products'    : new_order_product,
                 'product_links': new_order_product_url,
                 'skus'        : new_order_sku,
                 'pcs'         : new_order_pc,
                 'prices'      : new_order_price,
                 'notes'        : new_order_note,
-
-                'product_arr'       : new_order_product_arr,
-                'product_link_arr'  : new_order_product_url_arr,
-                'sku_arr'            : new_order_sku_arr,
-                'pc_arr'            : new_order_pcs_arr,
-                'note_arr'          : new_order_price,
-                'price_arr'          : new_order_price_arr,
+                 // or one item in array
+                'product_arr'       : new_order_product_arr.push(new_order_product),
+                'product_link_arr'  : new_order_product_url_arr.push(new_order_product_url),
+                'sku_arr'            : new_order_sku_arr.push(new_order_sku),
+                'pc_arr'            : new_order_pcs_arr.push(new_order_pc),
+                'note_arr'          : new_order_note_arr.push(new_order_note),
+                'price_arr'          : new_order_price_arr.push(new_order_price),
                 };
                 console.log(order_detail);
                 console.log(typeof order_detail);
@@ -192,8 +193,8 @@
                             new_order_notes    += single_notes + ' | ';
                             new_order_note_arr.push(single_notes);
                             // new_order_notes    += ' |  ';
-                        };
-                        console.log("Array ->"  + new_order_note_arr);
+                        }
+	                    console.log("Array ->"  + new_order_note_arr);
                         var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
                         new_order_pcs          += single_pcs + ' | ';
                         // new_order_pcs          += ' | ';
@@ -204,26 +205,38 @@
                         // new_order_price        += ' | ';
                         new_order_price_arr.push(single_price);
                         console.log("Array ->"  + new_order_price_arr);
-                     };
-                 };
-                console.log(new_order_product);
-                if(new_order_product.endsWith(' | ')){new_order_product=new_order_product.slice(0,new_order_product.length-3)};
-                console.log(new_order_product);
+                    }
+                }
+	            console.log(new_order_product);
+	            if (new_order_product.endsWith(' | ')) {
+		            new_order_product = new_order_product.slice(0, new_order_product.length - 3)
+	            }
+	            console.log(new_order_product);
                 console.log(new_order_product_url);
-                if(new_order_product_url.endsWith(' | ')){new_order_product_url=new_order_product_url.slice(0,new_order_product_url.length-3)};
-                console.log(new_order_product_url);
+	            if (new_order_product_url.endsWith(' | ')) {
+		            new_order_product_url = new_order_product_url.slice(0, new_order_product_url.length - 3)
+	            }
+	            console.log(new_order_product_url);
                 console.log(new_order_notes);
-                if(new_order_notes.endsWith(' | ')){new_order_notes=new_order_notes.slice(0,new_order_notes.length-3)};
-                console.log(new_order_notes);
+	            if (new_order_notes.endsWith(' | ')) {
+		            new_order_notes = new_order_notes.slice(0, new_order_notes.length - 3)
+	            }
+	            console.log(new_order_notes);
                 console.log(new_order_sku);
-                if(new_order_sku.endsWith(' | ')){new_order_sku=new_order_sku.slice(0,new_order_sku.length-3)};
-                console.log(new_order_sku);
+	            if (new_order_sku.endsWith(' | ')) {
+		            new_order_sku = new_order_sku.slice(0, new_order_sku.length - 3)
+	            }
+	            console.log(new_order_sku);
                 console.log(new_order_pcs);
-                if(new_order_pcs.endsWith(' | ')){new_order_pcs=new_order_pcs.slice(0,new_order_pcs.length-3)};
-                console.log(new_order_pcs);
+	            if (new_order_pcs.endsWith(' | ')) {
+		            new_order_pcs = new_order_pcs.slice(0, new_order_pcs.length - 3)
+	            }
+	            console.log(new_order_pcs);
                 console.log(new_order_price);
-                if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-3)};
-                console.log(new_order_price);
+	            if (new_order_price.endsWith(' | ')) {
+		            new_order_price = new_order_price.slice(0, new_order_price.length - 3)
+	            }
+	            console.log(new_order_price);
                 var order_details = {
                 'plt'            : plt,
                 'seller'         : seller,
@@ -240,21 +253,21 @@
                 'income'         : new_order_pay,
                 'time'           : new_order_time,
                 'status'         : '10' ,
-
+                    // update all in array
                 'product_arr'       : new_order_product_arr,
                 'product_link_arr'  : new_order_product_url_arr,
                 'sku_arr'            : new_order_sku_arr,
                 'pc_arr'            : new_order_pcs_arr,
                 'price_arr'          : new_order_price_arr,
                 'note_arr'          : new_order_note_arr,
-
+                    // update all in strings words
                 'products'    : new_order_product,
                 'product_links': new_order_product_url,
                 'skus'        : new_order_sku,
-                'pcs'         : new_order_pc,
+                'pcs'         : new_order_pcs,
                 'prices'      : new_order_price,
                 'notes'        : new_order_notes,
-                }
+                };
                 console.log(order_details);
                 console.log(typeof order_details);
                 var tkpd_orders_up = GM_xmlhttpRequest({
