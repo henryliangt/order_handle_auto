@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tokopedia Barcode + Invoice page Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.12
+// @version      0.13
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
