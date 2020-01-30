@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Tokopedia Barcode + Order update
+// @name         Tokopedia Barcode + Invoice page Order update
 // @namespace    http://www.tiaria.id/
 // @version      0.11
 // @description  Handle tokopedia orders
@@ -29,6 +29,8 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
+// @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.meta.js
+// @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.user.js
 
 // ==/UserScript==
 (function() {
