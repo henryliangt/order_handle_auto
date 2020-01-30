@@ -109,7 +109,7 @@
                                    }else{
                     var new_order_product         = '';
                     var new_order_product_url     = '';
-                    var new_order_notes           =  '';
+                    var new_order_notes           = '';
                     var new_order_sku             = '';
                     var new_order_pcs             = '';
                     var new_order_price           = '';
@@ -125,26 +125,40 @@
                     for(var i=1; i < order_rows.length; i++){
                         if(order_rows[i].childNodes.length > 6){
                             // console.log(order_rows[i].childNodes);
-                            new_order_product      += order_rows[i].querySelector('td > a').textContent + ' | ';
+                            var single_product     = order_rows[i].querySelector('td > a').textContent;
+                            new_order_product      += single_product + ' | ';
+                            new_order_product_arr.push(single_product);
                             // new_order_product      += ' | ';
-                            console.log(new_order_product);
-                            new_order_product_url  += order_rows[i].querySelector('td > a').href + ' | ';
+                            console.log(new_order_product + new_order_product_arr);
+                            var single_product_url  = order_rows[i].querySelector('td > a').href
+                            new_order_product_url  += single_product_url + ' | ';
+                            new_order_product_url_arr.push(single_product_url);
                             // new_order_product_url  += ' | ';
-                            console.log(new_order_product_url);
-                            new_order_sku          += order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim() + ' | ';
+                            console.log(new_order_product_url + new_order_product_url_arr);
+                            var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim()
+                            new_order_sku          += single_sku + ' | ';
+                            new_order_sku_arr.push(single_sku);
                             // new_order_sku          += ' | ';
-                            console.log(new_order_sku);
+                            console.log(new_order_sku + new_order_sku_arr);
                             var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                             if(notes_elem){
-                                new_order_notes    += notes_elem.textContent.trim() + ' | ';
+                                var single_notes    = notes_elem.textContent.trim()
+                                new_order_notes    += single_notes + ' | ';
+                                new_order_notes_arr.push(single_notes);
+
                                 // new_order_notes    += ' |  ';
                             };
-                            new_order_pcs          += order_rows[i].querySelectorAll('td')[1].textContent.trim() + ' | ';
+                            console.log(new_order_notes + new_order_notes_arr);
+                            var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim()
+                            new_order_pcs          += single_pcs + ' | ';
                             // new_order_pcs          += ' | ';
-                            console.log(new_order_pcs);
-                            new_order_price        += order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim() + ' | ';
+                            new_order_pcs_arr.push(new_order_pcs);
+                            console.log(new_order_pcs + new_order_pcs_arr);
+                            var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim()
+                            new_order_price        += single_price + ' | ';
                             // new_order_price        += ' | ';
-                            console.log(new_order_price);
+                            new_order_price_arr.push(single_price);
+                            console.log(new_order_price + new_order_price_arr);
                          }
                      }
                  }
