@@ -42,6 +42,21 @@
         if(url.includes('www.tokopedia.com/invoice.pl')){
             // alert('Invoice page');
             // document.querySelector('table > tbody > tr:nth-child(4) > td:nth-child(2) > a').textContent = 'Tiaria Great Jewelry';
+            var new_order_product         = '';
+            var new_order_product_url     = '';
+            var new_order_note            = '';
+            var new_order_notes           = '';
+            var new_order_sku             = '';
+            var new_order_pcs             = '';
+            var new_order_price           = '';
+            // console.log(order_rows);
+            var new_order_product_arr     = [];
+            var new_order_product_url_arr = [];
+            var new_order_note_arr        = [];
+            var new_order_sku_arr         = [];
+            var new_order_pcs_arr         = [];
+            var new_order_price_arr       = [];
+
             var seller                       = document.querySelector('table > tbody > tr:nth-child(4) > td:nth-child(2) > a').textContent.trim();
             var new_order                    = '';
             var new_order_numbers_elem       = $("tr > td > table > tbody > tr > td > span")[1];
@@ -87,22 +102,22 @@
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
-                var new_order_product        = new_order_product_elem[0].textContent.replace(',','_');
-                var new_order_product_url    = new_order_product_elem[0].href.replace(',','_');
+                new_order_product            = new_order_product_elem[0].textContent.replace(',','_');
+                new_order_product_url    = new_order_product_elem[0].href.replace(',','_');
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
-                var new_order_sku            = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                new_order_sku                = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
                 console.log(new_order_sku);
                 var new_order_pc_elem        = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
                 var new_order_pc = new_order_pc_elem[0].textContent.trim();
                 console.log(new_order_pc);
                 var new_order_price_elem     = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
-                var new_order_price          = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
+                new_order_price              = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
                 console.log(new_order_price);
                 var new_order_note_elem      = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
-                var new_order_note           = '';
+                new_order_note               = '';
                 if(new_order_note_elem){
-                    var new_order_note       = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
+                    new_order_note           = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
                 }
                 console.log(new_order_note);
                 var order_detail = {
@@ -127,12 +142,20 @@
                 'time'        : new_order_time,
                 'note'        : new_order_note,
                 'status'      : '10' ,
+
                 'products'    : new_order_product,
                 'product_links': new_order_product_url,
                 'skus'        : new_order_sku,
                 'pcs'         : new_order_pc,
                 'prices'      : new_order_price,
                 'notes'        : new_order_note,
+
+                'product_arr'       : new_order_product_arr,
+                'product_link_arr'  : new_order_product_url_arr,
+                'sku_arr'            : new_order_sku_arr,
+                'pc_arr'            : new_order_pcs_arr,
+                'note_arr'          : new_order_price,
+                'price_arr'          : new_order_price_arr,
                 };
                 console.log(order_detail);
                 console.log(typeof order_detail);
@@ -145,21 +168,6 @@
                     onload  :           function(res){console.log(res.responseText)},
                 });
             }else{
-                var new_order_product         = '';
-                var new_order_product_url     = '';
-                var new_order_notes           = '';
-                var new_order_sku             = '';
-                var new_order_pcs             = '';
-                var new_order_price           = '';
-                // console.log(order_rows);
-                var new_order_product_arr     = [];
-                var new_order_product_url_arr = [];
-                var new_order_notes_arr       = [];
-                var new_order_sku_arr         = [];
-                var new_order_pcs_arr         = [];
-                var new_order_price_arr       = [];
-
-
                 for(var i=1; i < order_rows.length; i++){
                     if(order_rows[i].childNodes.length > 6){
                         // console.log(order_rows[i].childNodes);
@@ -182,10 +190,10 @@
                         if(notes_elem){
                             var single_notes    = notes_elem.textContent.trim().replace(',','_');
                             new_order_notes    += single_notes + ' | ';
-                            new_order_notes_arr.push(single_notes);
+                            new_order_note_arr.push(single_notes);
                             // new_order_notes    += ' |  ';
                         };
-                        console.log("Array ->"  + new_order_notes_arr);
+                        console.log("Array ->"  + new_order_note_arr);
                         var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
                         new_order_pcs          += single_pcs + ' | ';
                         // new_order_pcs          += ' | ';
@@ -226,30 +234,26 @@
                 'add'            : new_order_add,
                 'kurir'          : new_order_kurir,
                 'resi'           : new_order_resi,
-                // 'product'     : new_order_product,
-                'product_arr'       : new_order_product_arr,
-                // 'product_link': new_order_product_url,
-                'product_link_arr'  : new_order_product_url_arr,
-                // 'sku'            : new_order_sku,
-                'sku_arr'            : new_order_sku_arr,
-                // 'pc'            : new_order_pc,
-                'pc_arr'            : new_order_pcs_arr,
-                // 'price'          : new_order_price,
-                'price_arr'          : new_order_price_arr,
                 'amount'         : new_order_amount,
                 'shipping'       : new_order_shipping,
                 'commission'     : new_order_commission,
                 'income'         : new_order_pay,
                 'time'           : new_order_time,
-                'note_arr'          : new_order_notes_arr,
                 'status'         : '10' ,
+
+                'product_arr'       : new_order_product_arr,
+                'product_link_arr'  : new_order_product_url_arr,
+                'sku_arr'            : new_order_sku_arr,
+                'pc_arr'            : new_order_pcs_arr,
+                'price_arr'          : new_order_price_arr,
+                'note_arr'          : new_order_note_arr,
 
                 'products'    : new_order_product,
                 'product_links': new_order_product_url,
                 'skus'        : new_order_sku,
                 'pcs'         : new_order_pc,
                 'prices'      : new_order_price,
-                'notes'        : new_order_note,
+                'notes'        : new_order_notes,
                 }
                 console.log(order_details);
                 console.log(typeof order_details);
