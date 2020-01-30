@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.20
+// @version      0.21
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -157,21 +157,21 @@
                 for(var i=1; i < order_rows.length; i++){
                     if(order_rows[i].childNodes.length > 6){
                         // console.log(order_rows[i].childNodes);
-                        var single_product     = order_rows[i].querySelector('td > a').textContent.replace(',','_');
+                        var single_product      = order_rows[i].querySelector('td > a').textContent.replace(',','_');
                         new_order_product      += single_product + ' | ';
                         new_order_product_arr.push(single_product);
                         // new_order_product      += ' | ';
-                        console.log("Array --->" + new_order_product_arr);
+                        console.log("Array ->" + new_order_product_arr);
                         var single_product_url  = order_rows[i].querySelector('td > a').href.replace(',','_');
                         new_order_product_url  += single_product_url + ' | ';
                         new_order_product_url_arr.push(single_product_url);
                         // new_order_product_url  += ' | ';
-                        console.log("Array --->" + new_order_product_url_arr);
+                        console.log("Array ->"+ new_order_product_url_arr);
                         var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
                         new_order_sku          += single_sku + ' | ';
                         new_order_sku_arr.push(single_sku);
                         // new_order_sku          += ' | ';
-                        console.log("Array --->" + new_order_sku_arr);
+                        console.log("Array ->" + new_order_sku_arr);
                         var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                         if(notes_elem){
                             var single_notes    = notes_elem.textContent.trim().replace(',','_');
@@ -179,17 +179,17 @@
                             new_order_notes_arr.push(single_notes);
                             // new_order_notes    += ' |  ';
                         };
-                        console.log("Array --->" + new_order_notes_arr);
+                        console.log("Array ->"  + new_order_notes_arr);
                         var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
                         new_order_pcs          += single_pcs + ' | ';
                         // new_order_pcs          += ' | ';
                         new_order_pcs_arr.push(single_pcs);
-                        console.log("Array --->" + new_order_pcs_arr);
+                        console.log("Array ->"  + new_order_pcs_arr);
                         var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
                         new_order_price        += single_price + ' | ';
                         // new_order_price        += ' | ';
                         new_order_price_arr.push(single_price);
-                        console.log("Array --->" + new_order_price_arr);
+                        console.log("Array ->"  + new_order_price_arr);
                      };
                  };
                 console.log(new_order_product);
@@ -211,27 +211,32 @@
                 if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-3)};
                 console.log(new_order_price);
                 var order_details = {
-                'plt'         : plt,
-                'seller'      : seller,
-                'order_number': new_order_number,
-                'order_url'   : new_order_url,
-                'buyer'       : new_order_consignees.textContent,
-                'tel'         : new_order_tel,
-                'add'         : new_order_add,
-                'kurir'       : new_order_kurir,
-                'resi'        : new_order_resi,
-                'product'     : new_order_product,
-                'product_link': new_order_product_url,
-                'sku'         : new_order_sku,
-                'pcs'         : new_order_pcs,
-                'price'       : new_order_price,
-                'amount'      : new_order_amount,
-                'shipping'    : new_order_shipping,
-                'commission'  : new_order_commission,
-                'income'      : new_order_pay,
-                'time'        : new_order_time,
-                'notes'       : new_order_notes,
-                'status'      : '10' ,
+                'plt'            : plt,
+                'seller'         : seller,
+                'order_number'   : new_order_number,
+                'order_url'      : new_order_url,
+                'buyer'          : new_order_consignees.textContent,
+                'tel'            : new_order_tel,
+                'add'            : new_order_add,
+                'kurir'          : new_order_kurir,
+                'resi'           : new_order_resi,
+                // 'product'     : new_order_product,
+                'product_arr'       : new_order_product_arr,
+                // 'product_link': new_order_product_url,
+                'product_link_arr'  : new_order_product_url_arr,
+                // 'sku'            : new_order_sku,
+                'sku_arr'            : new_order_sku_arr,
+                // 'pc'            : new_order_pc,
+                'pc_arr'            : new_order_pcs_arr,
+                // 'price'          : new_order_price,
+                'price_arr'          : new_order_price_arr,
+                'amount'         : new_order_amount,
+                'shipping'       : new_order_shipping,
+                'commission'     : new_order_commission,
+                'income'         : new_order_pay,
+                'time'           : new_order_time,
+                'note_arr'          : new_order_notes_arr,
+                'status'         : '10' ,
                 }
                 console.log(order_details);
                 console.log(typeof order_details);
