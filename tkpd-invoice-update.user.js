@@ -125,42 +125,59 @@
                     for(var i=1; i < order_rows.length; i++){
                         if(order_rows[i].childNodes.length > 6){
                             // console.log(order_rows[i].childNodes);
-                            var single_product     = order_rows[i].querySelector('td > a').textContent;
+                            var single_product     = order_rows[i].querySelector('td > a').textContent.replace(',','_');
                             new_order_product      += single_product + ' | ';
                             new_order_product_arr.push(single_product);
                             // new_order_product      += ' | ';
-                            console.log(new_order_product + "array --->" + new_order_product_arr);
-                            var single_product_url  = order_rows[i].querySelector('td > a').href
+                            console.log("array --->" + new_order_product_arr);
+                            var single_product_url  = order_rows[i].querySelector('td > a').href.replace(',','_');
                             new_order_product_url  += single_product_url + ' | ';
                             new_order_product_url_arr.push(single_product_url);
                             // new_order_product_url  += ' | ';
                             console.log(new_order_product_url + "array --->" + new_order_product_url_arr);
-                            var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim()
+                            var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
                             new_order_sku          += single_sku + ' | ';
                             new_order_sku_arr.push(single_sku);
                             // new_order_sku          += ' | ';
                             console.log(new_order_sku + "array --->" + new_order_sku_arr);
                             var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                             if(notes_elem){
-                                var single_notes    = notes_elem.textContent.trim()
+                                var single_notes    = notes_elem.textContent.trim().replace(',','_');
                                 new_order_notes    += single_notes + ' | ';
                                 new_order_notes_arr.push(single_notes);
-
                                 // new_order_notes    += ' |  ';
                             };
                             console.log(new_order_notes + "array --->" + new_order_notes_arr);
-                            var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim()
+                            var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
                             new_order_pcs          += single_pcs + ' | ';
                             // new_order_pcs          += ' | ';
                             new_order_pcs_arr.push(new_order_pcs);
                             console.log(new_order_pcs + "array --->" + new_order_pcs_arr);
-                            var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim()
+                            var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
                             new_order_price        += single_price + ' | ';
                             // new_order_price        += ' | ';
                             new_order_price_arr.push(single_price);
                             console.log(new_order_price + "array --->" + new_order_price_arr);
-                         }
-                     }
+                         };
+                     };
+                    console.log(new_order_product);
+                    if(new_order_product.endsWith(' | ')){new_order_product=new_order_product.slice(0,new_order_product.length-4)};
+                    console.log(new_order_product);
+                    console.log(new_order_product_url);
+                    if(new_order_product_url.endsWith(' | ')){new_order_product_url=new_order_product_url.slice(0,new_order_product_url.length-4)};
+                    console.log(new_order_product_url);
+                    console.log(new_order_notes);
+                    if(new_order_notes.endsWith(' | ')){new_order_notes=new_order_notes.slice(0,new_order_notes.length-4)};
+                    console.log(new_order_notes);
+                    console.log(new_order_sku);
+                    if(new_order_sku.endsWith(' | ')){new_order_sku=new_order_sku.slice(0,new_order_sku.length-4)};
+                    console.log(new_order_sku);
+                    console.log(new_order_pcs);
+                    if(new_order_pcs.endsWith(' | ')){new_order_pcs=new_order_pcs.slice(0,new_order_pcs.length-4)};
+                    console.log(new_order_pcs);
+                    console.log(new_order_price);
+                    if(new_order_price.endsWith(' | ')){new_order_price=new_order_price.slice(0,new_order_price.length-4)};
+                    console.log(new_order_price);
                  }
             var order_detail = {
                 'plt'         : plt,
