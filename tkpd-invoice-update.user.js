@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.21
+// @version      0.22
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -127,6 +127,12 @@
                 'time'        : new_order_time,
                 'note'        : new_order_note,
                 'status'      : '10' ,
+                'products'    : new_order_product,
+                'product_links': new_order_product_url,
+                'skus'        : new_order_sku,
+                'pcs'         : new_order_pc,
+                'prices'      : new_order_price,
+                'notes'        : new_order_note,
                 };
                 console.log(order_detail);
                 console.log(typeof order_detail);
@@ -237,6 +243,13 @@
                 'time'           : new_order_time,
                 'note_arr'          : new_order_notes_arr,
                 'status'         : '10' ,
+
+                'products'    : new_order_product,
+                'product_links': new_order_product_url,
+                'skus'        : new_order_sku,
+                'pcs'         : new_order_pc,
+                'prices'      : new_order_price,
+                'notes'        : new_order_note,
                 }
                 console.log(order_details);
                 console.log(typeof order_details);
