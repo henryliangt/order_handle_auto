@@ -74,7 +74,7 @@
             var new_order_pay_elem           = document.querySelectorAll('table > tbody > tr> td > table > tbody > tr > td > table > tbody > tr > td');
             var new_order_pay                = new_order_pay_elem[new_order_pay_elem.length-1].textContent.split('.').join('').replace('Rp','').trim();
             console.log(new_order_pay);
-            // var new_order_amount =     document.querySelectorAll('table > tbody > tr:nth-child(4) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
+            // var new_order_amount             =     document.querySelectorAll('table > tbody > tr:nth-child(4) > td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             // console.log(new_order_amount[0].textContent.split('.').join('').replace('Rp',''));
             var new_order_resi_elem          =       document.querySelector('tr:nth-child(2) > td:nth-child(1) > div:nth-child(3) > span');
             var new_order_resi               = '';
@@ -91,18 +91,18 @@
                 var new_order_product_url    = new_order_product_elem[0].href;
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
-                var new_order_sku = new_order_sku_elem[0].textContent.replace('SKU - ','').trim()
+                var new_order_sku            = new_order_sku_elem[0].textContent.replace('SKU - ','').trim()
                 console.log(new_order_sku);
-                var new_order_pc_elem       =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
+                var new_order_pc_elem        =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
                 var new_order_pc = new_order_pc_elem[0].textContent.trim();
                 console.log(new_order_pc);
                 var new_order_price_elem     = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
                 var new_order_price          = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
                 console.log(new_order_price);
-                var new_order_notes_elem     = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
-                var new_order_note          =  '';
+                var new_order_note_elem      = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
+                var new_order_note           =  '';
                 if(new_order_note_elem){
-                    var new_order_note = new_order_note_elem[new_order_note_elem.length-1].textContent.trim();
+                    var new_order_note       = new_order_note_elem[new_order_note_elem.length-1].textContent.trim();
                 }
                 console.log(new_order_notes);
                 var order_detail = {
