@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.18
+// @version      0.19
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -79,7 +79,7 @@
             var new_order_resi_elem          =       document.querySelector('tr:nth-child(2) > td:nth-child(1) > div:nth-child(3) > span');
             var new_order_resi               = '';
             if(new_order_resi_elem){
-                new_order_resi               = new_order_resi_elem.textContent;console.log(new_order_resi);
+                new_order_resi               = new_order_resi_elem.textContent;console.log(new_order_resi).replace(',','_');
             };
             var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
@@ -87,22 +87,22 @@
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
-                var new_order_product        = new_order_product_elem[0].textContent;
-                var new_order_product_url    = new_order_product_elem[0].href;
+                var new_order_product        = new_order_product_elem[0].textContent.replace(',','_');
+                var new_order_product_url    = new_order_product_elem[0].href.replace(',','_');
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
-                var new_order_sku            = new_order_sku_elem[0].textContent.replace('SKU - ','').trim()
+                var new_order_sku            = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
                 console.log(new_order_sku);
-                var new_order_pc_elem        =        document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
+                var new_order_pc_elem        = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
                 var new_order_pc = new_order_pc_elem[0].textContent.trim();
                 console.log(new_order_pc);
                 var new_order_price_elem     = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(4)');
                 var new_order_price          = new_order_price_elem[0].textContent.split('.').join('').replace('Rp','').trim();
                 console.log(new_order_price);
                 var new_order_note_elem      = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
-                var new_order_note           =  '';
+                var new_order_note           = '';
                 if(new_order_note_elem){
-                    var new_order_note       = new_order_note_elem[new_order_note_elem.length-1].textContent.trim();
+                    var new_order_note       = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
                 }
                 console.log(new_order_notes);
                 var order_detail = {
@@ -118,16 +118,16 @@
                 'product'     : new_order_product,
                 'product_link': new_order_product_url,
                 'sku'         : new_order_sku,
-                'pc'         : new_order_pc,
+                'pc'          : new_order_pc,
                 'price'       : new_order_price,
                 'amount'      : new_order_amount,
                 'shipping'    : new_order_shipping,
                 'commission'  : new_order_commission,
                 'income'      : new_order_pay,
                 'time'        : new_order_time,
-                'note'       : new_order_note,
+                'note'        : new_order_note,
                 'status'      : '10' ,
-                }
+                };
                 console.log(order_detail);
                 console.log(typeof order_detail);
                 var tkpd_order_up = GM_xmlhttpRequest({
