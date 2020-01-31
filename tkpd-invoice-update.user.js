@@ -195,7 +195,7 @@
                     onload  :           function(res){console.log(res.responseText)},
                 });
             }else{
-                new_order_item                  = -1;
+                new_order_item                  = 0;
                 for(var i=1; i < order_rows.length; i++){
                     if(order_rows[i].childNodes.length > 6){
                         new_order_item         += 1;
