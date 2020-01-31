@@ -113,7 +113,7 @@
                 if (new_order_sku          === '') {
                     new_order_sku            = 'No SKU';
                 }
-                console.log(new_order_sku);
+                console.log('new order sku'  + new_order_sku);
                 var new_order_pc_elem        = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
                 var new_order_pc = new_order_pc_elem[0].textContent.trim();
                 console.log(new_order_pc);
@@ -139,9 +139,9 @@
                 new_order_pcs_arr.push(new_order_pc);
                 new_order_price_arr.push(new_order_price);
                 new_order_note_arr.push(new_order_note);
-                console.log(new_order_note_arr);
-                console.log('check note arry');
-                console.log(new_order_note_arr.length);
+                console.log(new_order_sku_arr);
+                console.log('check sku arry');
+                console.log(new_order_sku_arr.length);
                 var order_detail = {
                 'plt'         : plt,
                 'seller'      : seller,
