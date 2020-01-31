@@ -105,12 +105,12 @@
             if(order_rows.length < 5){
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
                 new_order_product            = new_order_product_elem[0].textContent.replace(',','_');
-                new_order_product_url    = new_order_product_elem[0].href.replace(',','_');
+                new_order_product_url        = new_order_product_elem[0].href.replace(',','_');
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
                 new_order_sku                = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
-                if (new_order_sku.lenth === 0) {
-                    new_order_sku = 'No SKU'
+                if (new_order_sku.length   === 0) {
+                    new_order_sku = 'No SKU';
                 }
                 console.log(new_order_sku);
                 var new_order_pc_elem        = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
