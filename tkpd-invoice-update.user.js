@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.25
+// @version      0.26
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -109,6 +109,9 @@
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
                 new_order_sku                = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                if (new_order_sku.lenth === 0) {
+                    new_order_sku = 'No SKU'
+                }
                 console.log(new_order_sku);
                 var new_order_pc_elem        = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2)');
                 var new_order_pc = new_order_pc_elem[0].textContent.trim();
@@ -201,6 +204,9 @@
                         // new_order_product_url  += ' | ';
                         console.log("Array ->"+ new_order_product_url_arr);
                         var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                        if (single_sku.length === 0) {
+                            single_sku = 'No SKU'
+                        }
                         new_order_sku          += single_sku + ' | ';
                         new_order_sku_arr.push(single_sku);
                         // new_order_sku          += ' | ';
@@ -208,9 +214,15 @@
                         var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                         if(notes_elem){
                             var single_notes    = notes_elem.textContent.trim().replace(',','_');
+                            if (single_notes === '') {
+                                single_notes = 'No note'
+                            }
                             new_order_notes    += single_notes + ' | ';
                             new_order_note_arr.push(single_notes);
                             // new_order_notes    += ' |  ';
+                        }else{
+                            new_order_notes    += 'No notes | ';
+                            new_order_note_arr.push('No notes');
                         }
 	                    console.log("Array ->"  + new_order_note_arr);
                         var single_pcs          = order_rows[i].querySelectorAll('td')[1].textContent.trim().replace(',','_');
