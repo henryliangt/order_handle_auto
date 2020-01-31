@@ -105,7 +105,7 @@
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
-            	new_order_item               = 1;
+            	new_order_item              += 1;
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
                 new_order_product            = new_order_product_elem[0].textContent.replace(',','_');
                 new_order_product_url        = new_order_product_elem[0].href.replace(',','_');
@@ -195,6 +195,7 @@
                     onload  :           function(res){console.log(res.responseText)},
                 });
             }else{
+                new_order_item                  = -1;
                 for(var i=1; i < order_rows.length; i++){
                     if(order_rows[i].childNodes.length > 6){
                         new_order_item         += 1;
