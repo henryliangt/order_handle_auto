@@ -100,11 +100,12 @@
                 console.log(new_order_resi);
             }
 	        var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
-            new_order_item                   = 1;
+
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
             if(order_rows.length < 5){
+            	new_order_item               = 1;
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
                 new_order_product            = new_order_product_elem[0].textContent.replace(',','_');
                 new_order_product_url        = new_order_product_elem[0].href.replace(',','_');
