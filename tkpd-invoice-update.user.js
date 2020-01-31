@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.26
+// @version      0.27
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -48,6 +48,7 @@
             var new_order_note            = '';
             var new_order_notes           = '';
             var new_order_sku             = '';
+            var new_order_item            = 0 ;
             var new_order_pcs             = '';
             var new_order_price           = '';
             // console.log(order_rows);
@@ -99,6 +100,7 @@
                 console.log(new_order_resi);
             }
 	        var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
+            new_order_item                   = 1;
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
             var new_order_amount             = new_order_amount_elem.textContent.split('.').join('').replace('Rp','');
             console.log(new_order_amount.trim());
@@ -155,6 +157,7 @@
                 'product'     : new_order_product,
                 'product_link': new_order_product_url,
                 'sku'         : new_order_sku,
+                'item'        : new_order_item,
                 'pc'          : new_order_pc,
                 'price'       : new_order_price,
                 'amount'      : new_order_amount,
@@ -193,6 +196,7 @@
             }else{
                 for(var i=1; i < order_rows.length; i++){
                     if(order_rows[i].childNodes.length > 6){
+                        new_order_item         += 1;
                         // console.log(order_rows[i].childNodes);
                         var single_product      = order_rows[i].querySelector('td > a').textContent.replace(',','_');
                         new_order_product      += single_product + ' | ';
@@ -287,17 +291,18 @@
                     // update all in array
                 'product_arr'       : new_order_product_arr,
                 'product_link_arr'  : new_order_product_url_arr,
-                'sku_arr'            : new_order_sku_arr,
+                'sku_arr'           : new_order_sku_arr,
+                'item'              : new_order_item,
                 'pc_arr'            : new_order_pcs_arr,
-                'price_arr'          : new_order_price_arr,
+                'price_arr'         : new_order_price_arr,
                 'note_arr'          : new_order_note_arr,
                     // update all in strings words
-                'products'    : new_order_product,
-                'product_links': new_order_product_url,
-                'skus'        : new_order_sku,
-                'pcs'         : new_order_pcs,
-                'prices'      : new_order_price,
-                'notes'        : new_order_notes,
+                'products'          : new_order_product,
+                'product_links'     : new_order_product_url,
+                'skus'              : new_order_sku,
+                'pcs'               : new_order_pcs,
+                'prices'            : new_order_price,
+                'notes'             : new_order_notes,
                 };
                 console.log(order_details);
                 console.log(typeof order_details);
