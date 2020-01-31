@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.24
+// @version      0.25
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -120,6 +120,11 @@
                 new_order_note               = '';
                 if(new_order_note_elem){
                     new_order_note           = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
+                    if (new_order_note === '') {
+                        new_order_note = 'No note'
+                    }
+                } else {
+                    new_order_note = 'No notes'
                 }
                 console.log(new_order_note);
 
@@ -130,9 +135,9 @@
                 new_order_pcs_arr.push(new_order_pc);
                 new_order_price_arr.push(new_order_price);
                 new_order_note_arr.push(new_order_note);
-                if(! new_order_note_arr){
-                    new_order_note_arr.push(' ');
-                }
+                console.log(new_order_note_arr);
+                console.log('check note arry');
+                console.log(new_order_note_arr.length);
                 var order_detail = {
                 'plt'         : plt,
                 'seller'      : seller,
