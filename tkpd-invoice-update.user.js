@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.23
+// @version      0.24
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -95,7 +95,8 @@
             var new_order_resi_elem          =       document.querySelector('tr:nth-child(2) > td:nth-child(1) > div:nth-child(3) > span');
             var new_order_resi               = '';
             if(new_order_resi_elem){
-                new_order_resi               = new_order_resi_elem.textContent;console.log(new_order_resi).replace(',','_');
+                new_order_resi               = new_order_resi_elem.textContent.replace(',','_');
+                console.log(new_order_resi);
             }
 	        var order_rows                   = document.querySelectorAll('body > div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr');
             var new_order_amount_elem        = order_rows[order_rows.length-1].querySelector('td:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2)');
@@ -127,10 +128,12 @@
                 new_order_product_url_arr.push(new_order_product_url);
                 new_order_sku_arr.push(new_order_sku);
                 new_order_pcs_arr.push(new_order_pc);
-                new_order_note_arr.push(new_order_note);
                 new_order_price_arr.push(new_order_price);
-
-	            var order_detail = {
+                new_order_note_arr.push(new_order_note);
+                if(! new_order_note_arr){
+                    new_order_note_arr.push(' ');
+                }
+                var order_detail = {
                 'plt'         : plt,
                 'seller'      : seller,
                 'order_number': new_order_number,
