@@ -75,7 +75,7 @@
 									GM_openInTab(invoice_urls_arr[index]);
 									index++;
 									index < invoice_amount ? open_invoice() : clearTimeout(open);
-								},3000)
+								},5000)
 						})()
 					})()
 				},
