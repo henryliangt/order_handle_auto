@@ -238,7 +238,7 @@
                         // new_order_pcs          += ' | ';
                         new_order_pcs_arr.push(single_pcs);
                         console.log("Array ->"  + new_order_pcs_arr);
-                        var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('  ').replace('Rp','').trim().replace(',','_');
+                        var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
                         new_order_price        += single_price + ' | ';
                         // new_order_price        += ' | ';
                         new_order_price_arr.push(single_price);
