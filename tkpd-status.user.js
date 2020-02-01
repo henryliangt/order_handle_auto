@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd status page actions
 // @namespace    https://www.tiaria.id/
-// @version      0.3
+// @version      0.31
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      https://www.tiaria.id
@@ -42,7 +42,7 @@
 			var stock_list_xhr = GM_xmlhttpRequest({
 				method: "GET",
 				url: 'https://script.google.com/macros/s/AKfycbxFDzosHE4xfVdbkbR7ixdjg3zsSyQE-ZTAcg6equ5qDKzZnS7v/exec',   //version 1, simple test , get stock_list done.
-				onreadystatechange: function (res) {console.log('----1--GM_XHR Request state changed to:------>>>>' + res.readyState);},
+				onreadystatechange: function (res) {console.log('-1-GM_XHR Request state changed to:-->>>' + res.readyState);},
 				onload: function (res) {
 					// Lets assume we get JSON back...
 					document.querySelector('#merchant-root > div > div > div.css-1yfh3sz > div.left-section > span').textContent = res.response.slice(0, 40);
@@ -50,22 +50,41 @@
 					stock_list = stock_list.split(',');
 					var sku_elem = document.querySelectorAll('div > div> div.product-info > div.product-sku');
 					for (var i = 0; i < sku_elem.length; i++) {
-						console.log(' ----------->real find');
-						var order             = sku_elem[i].textContent;
-						var order_sku         = sku_elem[i].textContent;
-						var order_sku_amount  = stock_list[(stock_list.indexOf(order_sku) + 1)];
-						// order = order.replace('SKU', order_sku_amount);
-						order                += '=';
-						order                += order_sku_amount;
+						console.log('---SKU(s) in this page--->');
+						var order               = sku_elem[i].textContent;
+						// var order_sku           = sku_elem[i].textContent;
+						var order_sku_amount    = stock_list[(stock_list.indexOf(order_sku) + 1)];
+						order                  += '=';
+						order                  += order_sku_amount;
 						sku_elem[i].textContent = order;
-						sku_elem[i].style     = "font-size:150%; color:black; font-family:verdana;"
+						sku_elem[i].style       = "font-size:150%; color:black; font-family:verdana;"
 					}
-					var invoice_urls = document.querySelectorAll('a.invoice');
-					for(var i=0; i<invoice_urls.length; i++){
-						var invurl = invoice_urls[i].href;
-						console.log(invurl);
-						setTimeout(GM_openInTab(invurl),500);
-					}
+					(function open_invoice (){
+						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
+						var invoice_urls_arr    = [];
+						var invoice_amount      = invoice_urls_elem.length;
+						for(var k=0; k<invoice_urls_elem.length; k++){
+							invoice_urls_arr.push(invoice_urls_elem[k].href);
+						}
+						var index               = 0;
+						(function open_invoice(){
+							var open           = setTimeout(
+								function(){
+									console.log(invoice_urls_arr[0]);
+									// GM_openInTab(invurl);
+									index++;
+									index < invoice_amount ? open_invoice() : clearTimeout(open);
+								},1000)
+						})()
+						// for(var j=0; j<invoice_urls_elem.length; j++){
+						// var invurl = invoice_urls[j].href;
+						// console.log(invurl);
+						// setTimeout(function(){
+						// 	// GM_openInTab(invurl);
+						// 	console.log(invurl);
+						// 	},1500);
+						// }
+					})()
 				},
 			});
 		}
