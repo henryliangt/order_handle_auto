@@ -62,13 +62,13 @@
 					(function open_invoice (){
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 						var invoice_urls_arr    = [];
-						var invoice_amount      = invoice_urls_elem.length;
 						for(var k=0; k<invoice_urls_elem.length; k++){
 							invoice_urls_arr.push(invoice_urls_elem[k].href);
 						}
 						var index               = 0;
+						var invoice_amount      = invoice_urls_arr.length;
 						(function open_invoice(){
-							var open           = setTimeout(
+							var open            = setTimeout(
 								function(){
 									console.log(index);
 									console.log(invoice_urls_arr[index]);

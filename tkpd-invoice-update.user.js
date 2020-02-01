@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.27
+// @version      0.28
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -107,11 +107,11 @@
             if(order_rows.length < 5){
             	// new_order_item              += 1;
                 var new_order_product_elem   = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > a');
-                new_order_product            = new_order_product_elem[0].textContent.replace(',','_');
-                new_order_product_url        = new_order_product_elem[0].href.replace(',','_');
+                new_order_product            = new_order_product_elem[0].textContent.split(',').join(' _ ');
+                new_order_product_url        = new_order_product_elem[0].href.split(',').join(' . ');
                 console.log(new_order_product_url);
                 var new_order_sku_elem       = document.querySelectorAll('tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div:nth-child(2)');
-                new_order_sku                = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                new_order_sku                = new_order_sku_elem[0].textContent.replace('SKU - ','').trim().split(',').join(' . ');
                 console.log('new order sku'  + new_order_sku);
                 if (new_order_sku          === '') {
                     new_order_sku            = 'No SKU';
@@ -126,7 +126,7 @@
                 var new_order_note_elem      = document.querySelectorAll('div.content-area > div > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(1) > div');
                 new_order_note               = '';
                 if(new_order_note_elem){
-                    new_order_note           = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().replace(',','_');
+                    new_order_note           = new_order_note_elem[new_order_note_elem.length-1].textContent.trim().split(',').join(' . ');
                     if (new_order_note === '') {
                         new_order_note = 'No note'
                     }
@@ -201,17 +201,17 @@
                     if(order_rows[i].childNodes.length > 6){
                         new_order_item         += 1;
                         // console.log(order_rows[i].childNodes);
-                        var single_product      = order_rows[i].querySelector('td > a').textContent.replace(',','_');
+                        var single_product      = order_rows[i].querySelector('td > a').textContent.split(',').join(' . ');
                         new_order_product      += single_product + ' | ';
                         new_order_product_arr.push(single_product);
                         // new_order_product      += ' | ';
                         console.log("Array ->" + new_order_product_arr);
-                        var single_product_url  = order_rows[i].querySelector('td > a').href.replace(',','_');
+                        var single_product_url  = order_rows[i].querySelector('td > a').href.split(',').join(' . ');
                         new_order_product_url  += single_product_url + ' | ';
                         new_order_product_url_arr.push(single_product_url);
                         // new_order_product_url  += ' | ';
                         console.log("Array ->"+ new_order_product_url_arr);
-                        var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().replace(',','_');
+                        var single_sku          = order_rows[i].querySelectorAll('td > div')[0].textContent.replace('SKU - ','').trim().split(',').join(' . ');
                         if (single_sku.length === 0) {
                             single_sku = 'No SKU'
                         }
@@ -221,7 +221,7 @@
                         console.log("Array ->" + new_order_sku_arr);
                         var notes_elem = order_rows[i].querySelectorAll('td > div')[3];
                         if(notes_elem){
-                            var single_notes    = notes_elem.textContent.trim().replace(',','_');
+                            var single_notes    = notes_elem.textContent.trim().split(',').join(' . ');
                             if (single_notes === '') {
                                 single_notes = 'No note'
                             }
@@ -238,7 +238,7 @@
                         // new_order_pcs          += ' | ';
                         new_order_pcs_arr.push(single_pcs);
                         console.log("Array ->"  + new_order_pcs_arr);
-                        var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('').replace('Rp','').trim().replace(',','_');
+                        var single_price        = order_rows[i].querySelectorAll('td')[3].textContent.split('.').join('  ').replace('Rp','').trim().replace(',','_');
                         new_order_price        += single_price + ' | ';
                         // new_order_price        += ' | ';
                         new_order_price_arr.push(single_price);
