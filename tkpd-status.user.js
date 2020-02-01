@@ -52,7 +52,7 @@
 					for (var i = 0; i < sku_elem.length; i++) {
 						console.log('---SKU(s) in this page--->');
 						var order               = sku_elem[i].textContent;
-						// var order_sku           = sku_elem[i].textContent;
+						var order_sku           = sku_elem[i].textContent;
 						var order_sku_amount    = stock_list[(stock_list.indexOf(order_sku) + 1)];
 						order                  += '=';
 						order                  += order_sku_amount;
@@ -70,20 +70,13 @@
 						(function open_invoice(){
 							var open           = setTimeout(
 								function(){
-									console.log(invoice_urls_arr[0]);
-									// GM_openInTab(invurl);
+									console.log(index);
+									console.log(invoice_urls_arr[index]);
+									GM_openInTab(invoice_urls_arr[index]);
 									index++;
 									index < invoice_amount ? open_invoice() : clearTimeout(open);
-								},1000)
+								},3000)
 						})()
-						// for(var j=0; j<invoice_urls_elem.length; j++){
-						// var invurl = invoice_urls[j].href;
-						// console.log(invurl);
-						// setTimeout(function(){
-						// 	// GM_openInTab(invurl);
-						// 	console.log(invurl);
-						// 	},1500);
-						// }
 					})()
 				},
 			});
