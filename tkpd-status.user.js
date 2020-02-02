@@ -61,8 +61,9 @@
 					}
 				},
 			});
+
+			function collect_invoice (){
 			var invoice_urls_arr    = [];
-			(function collect_invoice (){
 			var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 
 			// var invoice_urls_arr    = ['https://www.tokopedia.com/invoicessssssss'];
@@ -74,6 +75,7 @@
 			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			var index               = 0;
 			var invoice_amount      = invoice_urls_arr.length;
+			return invoice_urls_arr
 			// var index               = 0;
 			// var invoice_amount      = invoice_urls_arr.length;
 			// (function open_invoice(){
@@ -86,7 +88,9 @@
 			// 			index < invoice_amount ? open_invoice() : clearTimeout(open);
 			// 		},5000)
 			// })()
-		})()
+			};
+			var invoice_urls_arr = collect_invoice()
+			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			(function OrderExist(){
 				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 				if(invoice_urls_arr.length > 0){
