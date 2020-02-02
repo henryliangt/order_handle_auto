@@ -90,8 +90,10 @@
 											console.log(typeof result  + result);
 											if(result !== ''){
 												invoice_urls_elem[index].style = 'color:blue;';
+												console.log('blue, colored');
 											}else{
-												invoice_urls_tosend.push(invoice_url_arr[index])
+												invoice_urls_tosend.push(invoice_url_arr[index]);
+												console.log("TO send 1by1 " + invoice_urls_tosend);
 											};
 										}
 									})
