@@ -61,19 +61,19 @@
 					}
 				},
 			});
+			var invoice_urls_arr    = [];
 			(function collect_invoice (){
 			var invoice_urls_elem   = document.querySelectorAll('a.invoice');
-			var invoice_urls_arr    = [];
+
 			// var invoice_urls_arr    = ['https://www.tokopedia.com/invoicessssssss'];
 			var invoice_urls_tosend = [];
 			for(var k=0; k<invoice_urls_elem.length; k++){
+				console.log(invoice_urls_elem[k].href);
 				invoice_urls_arr.push(invoice_urls_elem[k].href);
 			}
 			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			var index               = 0;
 			var invoice_amount      = invoice_urls_arr.length;
-
-
 			// var index               = 0;
 			// var invoice_amount      = invoice_urls_arr.length;
 			// (function open_invoice(){
