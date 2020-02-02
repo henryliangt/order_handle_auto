@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd status page actions
 // @namespace    https://www.tiaria.id/
-// @version      0.31
+// @version      0.315
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      https://www.tiaria.id
@@ -20,6 +20,7 @@
 // @require      https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        GM_openInTab
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
 // @match        https://*.tokopedia.com/*
@@ -29,5 +30,5 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
-// @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-status.meta.js
-// @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-status.user.js
+// @updateURL    https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.meta.js
+// @downloadURL  https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.user.js
