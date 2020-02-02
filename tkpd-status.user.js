@@ -73,6 +73,20 @@
 			var index               = 0;
 			var invoice_amount      = invoice_urls_arr.length;
 
+
+			// var index               = 0;
+			// var invoice_amount      = invoice_urls_arr.length;
+			// (function open_invoice(){
+			// 	var open            = setTimeout(
+			// 		function(){
+			// 			console.log(index);
+			// 			console.log(invoice_urls_arr[index]);
+			// 			GM_openInTab(invoice_urls_arr[index]);
+			// 			index++;
+			// 			index < invoice_amount ? open_invoice() : clearTimeout(open);
+			// 		},5000)
+			// })()
+		})()
 			(function OrderExist(){
 				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 				if(invoice_urls_arr.length > 0){
@@ -101,20 +115,6 @@
 				console.log("TO send " + invoice_urls_tosend);
 			})()
 
-			// var index               = 0;
-			// var invoice_amount      = invoice_urls_arr.length;
-			// (function open_invoice(){
-			// 	var open            = setTimeout(
-			// 		function(){
-			// 			console.log(index);
-			// 			console.log(invoice_urls_arr[index]);
-			// 			GM_openInTab(invoice_urls_arr[index]);
-			// 			index++;
-			// 			index < invoice_amount ? open_invoice() : clearTimeout(open);
-			// 		},5000)
-			// })()
-
-		})()
 		}
 	}
 })();
