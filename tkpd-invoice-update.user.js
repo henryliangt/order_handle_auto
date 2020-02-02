@@ -30,8 +30,8 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
-// @updateURL    https://githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.meta.js
-// @downloadURL  https://githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.user.js
+// @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.meta.js
+// @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.user.js
 
 
 // ==/UserScript==
@@ -167,6 +167,7 @@
                 'commission'  : new_order_commission,
                 'income'      : new_order_pay,
                 'time'        : new_order_time,
+                'record_timestamp'  : Math.floor(Date.now()/1000),
                 'note'        : new_order_note,
                 'status'      : '10' ,
 
@@ -290,6 +291,8 @@
                 'commission'     : new_order_commission,
                 'income'         : new_order_pay,
                 'time'           : new_order_time,
+                'record_timestamp'  : Math.floor(Date.now()/1000),
+
                 'status'         : '10' ,
                     // update all in array
                 'product_arr'       : new_order_product_arr,

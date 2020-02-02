@@ -29,5 +29,5 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
-// @updateURL    https://githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.meta.js
-// @downloadURL  https://githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.user.js
+// @updateURL    https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.meta.js
+// @downloadURL  https://raw.githubusercontent.com/henryliangt/order_handle_auto/master/tkpd-invoice-update.user.js
