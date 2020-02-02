@@ -66,8 +66,10 @@
 							console.log(invoice_urls_elem[k].href);
 							invoice_urls_arr.push(invoice_urls_elem[k].href);
 						}
-						console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+						console.log('ALL invoice in 1st func=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+						return invoice_urls_arr
 					}
+					var invoice_url_arr = collect_invoice();
 
 					// var invoice_urls_arr    = [];
 					// var invoice_urls_elem   = document.querySelectorAll('a.invoice');
@@ -80,8 +82,7 @@
 
 
 			}})
-			var invoice_urls_arr = collect_invoice();
-			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+
 			function collect_invoice (){
 			var invoice_urls_arr    = [];
 			var invoice_urls_elem   = document.querySelectorAll('a.invoice');
