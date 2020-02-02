@@ -59,15 +59,26 @@
 						sku_elem[i].textContent = order;
 						sku_elem[i].style       = "font-size:150%; color:black; font-family:verdana;"
 					};
-					var invoice_urls_arr    = [];
-					var invoice_urls_elem   = document.querySelectorAll('a.invoice');
-					for(var k=0; k<invoice_urls_elem.length; k++){
-					console.log(invoice_urls_elem[k].href);
-					invoice_urls_arr.push(invoice_urls_elem[k].href);
-					console.log('in 1st func');
-					};
-				},
-			});
+					function collect_invoice (){
+						var invoice_urls_arr    = [];
+						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
+						for(var k=0; k<invoice_urls_elem.length; k++) {
+							console.log(invoice_urls_elem[k].href);
+							invoice_urls_arr.push(invoice_urls_elem[k].href);
+						}
+					}
+
+					// var invoice_urls_arr    = [];
+					// var invoice_urls_elem   = document.querySelectorAll('a.invoice');
+					// for(var k=0; k<invoice_urls_elem.length; k++){
+					// 	console.log(invoice_urls_elem[k].href);
+					// 	invoice_urls_arr.push(invoice_urls_elem[k].href);
+					// 	console.log('in 1st func');
+					// 	console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+					// };
+
+
+			}})
 			var invoice_urls_arr = collect_invoice();
 			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			function collect_invoice (){
