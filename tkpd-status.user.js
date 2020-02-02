@@ -66,10 +66,10 @@
 							console.log(invoice_urls_elem[k].href);
 							invoice_urls_arr.push(invoice_urls_elem[k].href);
 						}
-						console.log('ALL invoice in 1st func=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+						console.log('ALL invoice in 1st func=' + typeof invoice_urls_arr + " length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 						return invoice_urls_arr
 					}
-					var invoice_url_arr = collect_invoice();
+			var invoice_url_arr = collect_invoice();
 
 
 					function OrderExist(invoice_url_arr){
@@ -77,7 +77,7 @@
 					var invoice_amount      = invoice_url_arr.length;
 					var invoice_urls_tosend = [];
 					var invoice_urls_elem   = document.querySelectorAll('a.invoice');
-					console.log('ALL invoice in OrderExist function=  ' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
+					console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 					if(invoice_url_arr.length > 0){
 						var order_exist     = setTimeout(
 					function(){
@@ -85,7 +85,7 @@
 						console.log(invoice_url_arr[index]);
 						var order_check_online_xhr = GM_xmlhttpRequest({
 							method:   'GET',
-							url   :   'http://adakok.com/api/order-exist' + '?' + 'order_url=' + invoice_urls_arr[index] ,
+							url   :   'http://adakok.com/api/order-exist' + '?' + 'order_url=' + invoice_url_arr[index] ,
 							onreadystatechange: function (res) {console.log('-2-ordercheck online_XHR, already in data base ?:-->>>' + res.readyState);},
 							onload: function (res) {
 								var result = res.response;
@@ -104,9 +104,8 @@
 					console.log("TO send " + invoice_urls_tosend);
 					return invoice_urls_tosend
 					}
-					var invoice_url_tosend = OrderExist(invoice_url_arr);
-					console.log('TO send final =' + invoice_url_tosend);
-
+			var invoice_url_tosend = OrderExist(invoice_url_arr);
+			console.log('TO send final =' + invoice_url_tosend);
 					// var invoice_urls_arr    = [];
 					// var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 					// for(var k=0; k<invoice_urls_elem.length; k++){
@@ -115,15 +114,13 @@
 					// 	console.log('in 1st func');
 					// 	console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 					// };
-
-
 			}})
 
 			function collect_invoice (){
-				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 				var index               = 0;
-				var invoice_amount      = invoice_urls_arr.length;
-				return invoice_urls_arr
+				var invoice_amount      = invoice_url_arr.length;
+				return invoice_url_arr
 				// (function open_invoice(){
 				// 	var open            = setTimeout(
 				// 		function(){
