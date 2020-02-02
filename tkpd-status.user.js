@@ -66,6 +66,7 @@
 							console.log(invoice_urls_elem[k].href);
 							invoice_urls_arr.push(invoice_urls_elem[k].href);
 						}
+						console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 					}
 
 					// var invoice_urls_arr    = [];
