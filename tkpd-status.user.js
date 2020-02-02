@@ -69,12 +69,14 @@
 			for(var k=0; k<invoice_urls_elem.length; k++){
 				invoice_urls_arr.push(invoice_urls_elem[k].href);
 			}
-			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			var index               = 0;
 			var invoice_amount      = invoice_urls_arr.length;
 
 			(function OrderExist(){
-				var order_exist     = setTimeout(
+				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+				if(invoice_urls_arr.length > 0){
+					var order_exist     = setTimeout(
 					function(){
 						console.log(index);
 						console.log(invoice_urls_arr[index]);
@@ -90,13 +92,13 @@
 								}else{
 									invoice_urls_tosend.push(invoice_urls_arr[index])
 								};
-
 							}
 						})
 						index++;
 						index < invoice_amount ? OrderExist() : clearTimeout(order_exist);
 					},3000)
-				console.log("to send   " + invoice_urls_tosend);
+				}
+				console.log("TO send " + invoice_urls_tosend);
 			})()
 
 			// var index               = 0;
