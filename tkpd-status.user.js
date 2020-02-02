@@ -58,7 +58,9 @@
 						order                  += order_sku_amount;
 						sku_elem[i].textContent = order;
 						sku_elem[i].style       = "font-size:150%; color:black; font-family:verdana;"
-					}
+					};
+					var invoice_urls_arr = collect_invoice();
+					console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 				},
 			});
 
@@ -89,8 +91,8 @@
 			// 		},5000)
 			// })()
 			};
-			var invoice_urls_arr = collect_invoice()
-			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+
+
 			(function OrderExist(){
 				console.log('ALL invoice=  ' + typeof invoice_urls_arr + "   length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 				if(invoice_urls_arr.length > 0){
