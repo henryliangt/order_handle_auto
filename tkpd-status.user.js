@@ -30,8 +30,8 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
-// @updateURL    https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.meta.js
-// @downloadURL  https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.user.js
+// @updateURL    https://raw.github.com/henryliangt/order_handle_auto/master/tkpd-status.meta.js
+// @downloadURL  https://raw.github.com/henryliangt/order_handle_auto/master/tkpd-status.user.js
 // ==/UserScript==
 
 (function() {
@@ -63,13 +63,13 @@
 			});
 			(function collect_invoice (){
 			var invoice_urls_elem   = document.querySelectorAll('a.invoice');
-			// var invoice_urls_arr    = [];
-			var invoice_urls_arr    = ['https://www.tokopedia.com/invoicessssssss'];
+			var invoice_urls_arr    = [];
+			// var invoice_urls_arr    = ['https://www.tokopedia.com/invoicessssssss'];
 			var invoice_urls_tosend = [];
 			for(var k=0; k<invoice_urls_elem.length; k++){
 				invoice_urls_arr.push(invoice_urls_elem[k].href);
 			}
-			console.log('ALL invoice=  ' + invoice_urls_arr);
+			console.log('ALL invoice=  ' + typeof invoice_urls_arr + "length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 			var index               = 0;
 			var invoice_amount      = invoice_urls_arr.length;
 
@@ -88,8 +88,9 @@
 								if(result !== ''){
 									invoice_urls_elem[index].style = 'color:blue;';
 								}else{
-									invoice_urls_tosend.push(invoice_urls_elem[index])
-								}
+									invoice_urls_tosend.push(invoice_urls_arr[index])
+								};
+
 							}
 						})
 						index++;
