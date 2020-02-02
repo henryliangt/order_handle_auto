@@ -30,8 +30,8 @@
 // @match        *.jd.id/*
 // @match        *.lazada.co.id/order/detail*
 // @match        https://www.bukalapak.com/payment/transactions/print_preview*
-// @updateURL    https://github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.meta.js
-// @downloadURL  https://github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.user.js
+// @updateURL    https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.meta.js
+// @downloadURL  https://raw.github.com/henryliangt/order_handle_auto/blob/master/tkpd-status.user.js
 // ==/UserScript==
 
 (function() {
