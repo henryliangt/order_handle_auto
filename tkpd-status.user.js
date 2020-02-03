@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd status page actions
 // @namespace    https://www.tiaria.id/
-// @version      0.316
+// @version      0.32
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      https://www.tiaria.id
@@ -82,8 +82,8 @@
 							var order_exist     = setTimeout(
 						function(){
 									// var invoice_url_arr = collect_invoice();
-									console.log(index);
-									console.log('Hi');
+									console.log('Hi ' + index);
+
 									console.log(invoice_url_arr[index]);
 									var order_check_online_xhr = GM_xmlhttpRequest({
 										method:   'GET',
@@ -96,17 +96,19 @@
 												invoice_urls_elem[index-1].style = 'color:blue;';
 												console.log('blue, colored');
 											}else{
-												invoice_urls_tosend.push(invoice_url_arr[index]);
+												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);
 											};
 										}
 									})
 									index++;
+									console.log("TO send " + invoice_urls_tosend);
 									index < invoice_amount ? OrderExist() : clearTimeout(order_exist);
 								},3000)
-						console.log("TO send " + invoice_urls_tosend);
+
 						return invoice_urls_tosend
 						}
+
 					}
 			var invoice_url_tosend = OrderExist(invoice_url_arr);
 			console.log('TO send final =' + invoice_url_tosend);

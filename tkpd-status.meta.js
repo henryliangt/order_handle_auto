@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd status page actions
 // @namespace    https://www.tiaria.id/
-// @version      0.316
+// @version      0.32
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      https://www.tiaria.id
