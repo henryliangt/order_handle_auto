@@ -77,9 +77,12 @@
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 						console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 						if(invoice_url_arr.length > 0){
+							console.log(invoice_url_arr.length);
 							var order_exist     = setTimeout(
-						function(){
+						function(invoice_url_arr=invoice_url_arr){
+									var index = 0 ;
 									console.log(index);
+									console.log('Hi');
 									console.log(invoice_url_arr[index]);
 									var order_check_online_xhr = GM_xmlhttpRequest({
 										method:   'GET',
