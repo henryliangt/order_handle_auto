@@ -70,8 +70,9 @@
 						return invoice_urls_arr
 					}
 					var invoice_url_arr = collect_invoice();
-					function OrderExist(invoice_url_arr){
-						var index               = 0;
+					var index           = 0;
+					function OrderExist(){
+						var invoice_url_arr     = collect_invoice();
 						var invoice_amount      = invoice_url_arr.length;
 						var invoice_urls_tosend = [];
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
@@ -79,8 +80,8 @@
 						if(invoice_url_arr.length > 0){
 							console.log(invoice_url_arr.length);
 							var order_exist     = setTimeout(
-						function(invoice_url_arr=invoice_url_arr){
-									var index = 0 ;
+						function(){
+									// var invoice_url_arr = collect_invoice();
 									console.log(index);
 									console.log('Hi');
 									console.log(invoice_url_arr[index]);
