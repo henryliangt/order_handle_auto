@@ -110,9 +110,8 @@
 						}
 					// return invoice_urls_tosend
 					}
-
-			var invoice_url_tosend = OrderExist(invoice_url_arr);
-			console.log('TO send final =' + invoice_url_tosend);
+					var invoice_url_tosend = OrderExist(invoice_url_arr);
+					console.log('TO send final =' + invoice_url_tosend);
 			}})
 
 			// function collect_invoice (){
