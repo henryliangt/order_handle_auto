@@ -93,7 +93,7 @@
 											var result = res.response;
 											console.log(typeof result  + result);
 											if(result !== ''){
-												invoice_urls_elem[index].style = 'color:blue;';
+												invoice_urls_elem[index-1].style = 'color:blue;';
 												console.log('blue, colored');
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index]);
