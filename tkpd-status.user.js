@@ -74,16 +74,17 @@
 					function OrderExist(){
 						var invoice_url_arr     = collect_invoice();
 						var invoice_amount      = invoice_url_arr.length;
-						var invoice_urls_tosend = [];
+
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 						console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 						if(invoice_url_arr.length > 0){
 							console.log(invoice_url_arr.length);
 							var order_exist     = setTimeout(
 						function(){
+									var invoice_urls_tosend = [];
 									// var invoice_url_arr = collect_invoice();
 									console.log('Hi ' + index);
-									var invoice_urls_tosend;
+
 									console.log(invoice_url_arr[index]);
 									var order_check_online_xhr = GM_xmlhttpRequest({
 										method:   'GET',
@@ -98,7 +99,7 @@
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);
-												GM_openInTab(invoice_urls_arr[index]);
+												GM_openInTab(invoice_url_arr[index]);
 											};
 										}
 									})
@@ -107,7 +108,7 @@
 									index < invoice_amount ? OrderExist() : clearTimeout(order_exist);
 								},3000)
 						}
-					return invoice_urls_tosend
+					// return invoice_urls_tosend
 					}
 
 			var invoice_url_tosend = OrderExist(invoice_url_arr);
