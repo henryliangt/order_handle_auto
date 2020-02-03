@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd status page actions
 // @namespace    https://www.tiaria.id/
-// @version      0.32
+// @version      0.33
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      https://www.tiaria.id
@@ -98,6 +98,7 @@
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);
+												GM_openInTab(invoice_urls_arr[index]);
 											};
 										}
 									})
@@ -105,10 +106,8 @@
 									console.log("TO send " + invoice_urls_tosend);
 									index < invoice_amount ? OrderExist() : clearTimeout(order_exist);
 								},3000)
-
-						return invoice_urls_tosend
 						}
-
+					return invoice_urls_tosend
 					}
 			var invoice_url_tosend = OrderExist(invoice_url_arr);
 			console.log('TO send final =' + invoice_url_tosend);
