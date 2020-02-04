@@ -78,12 +78,12 @@
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
 						// console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 						if(invoice_url_arr.length > 0){
-							console.log(invoice_url_arr.length);
+							// console.log(invoice_url_arr.length);
 							var order_exist     = setTimeout(
 						function(){
 									var invoice_urls_tosend = [];
 									// var invoice_url_arr = collect_invoice();
-									console.log('Hi ' + index + '/' +invoice_url_arr.length + document.querySelectorAll('a.invoice')[index].textContent);
+									console.log('Hi ' + index + '/' +invoice_url_arr.length + ' = '+document.querySelectorAll('a.invoice')[index].textContent);
 
 									// console.log();
 									var order_check_online_xhr = GM_xmlhttpRequest({
@@ -95,7 +95,7 @@
 											console.log(typeof result  + "=" + result.length + '=' +result);
 											if(result.length > 3){
 												invoice_urls_elem[index-1].style = 'color:blue;';
-												console.log('blue, colored');
+												console.log('Yes, in, '+ document.querySelectorAll('a.invoice')[index-1].textContent)  + 'blue, colored');
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);
