@@ -66,7 +66,7 @@
 							// console.log(invoice_urls_elem[k].href);
 							invoice_urls_arr.push(invoice_urls_elem[k].href);
 						}
-						console.log('ALL invoice in 1st func=' + typeof invoice_urls_arr + " length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
+						// console.log('ALL invoice in 1st func=' + typeof invoice_urls_arr + " length=" + invoice_urls_arr.length + invoice_urls_arr + '=' );
 						return invoice_urls_arr
 					}
 					var invoice_url_arr    = collect_invoice();
@@ -76,16 +76,16 @@
 						var invoice_amount      = invoice_url_arr.length;
 
 						var invoice_urls_elem   = document.querySelectorAll('a.invoice');
-						console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
+						// console.log('OrderExist function all invoice=' + typeof invoice_url_arr + "   length=" + invoice_url_arr.length + invoice_url_arr + '=' );
 						if(invoice_url_arr.length > 0){
 							console.log(invoice_url_arr.length);
 							var order_exist     = setTimeout(
 						function(){
 									var invoice_urls_tosend = [];
 									// var invoice_url_arr = collect_invoice();
-									console.log('Hi ' + index);
+									console.log('Hi ' + index + '/' +invoice_url_arr.length + document.querySelectorAll('a.invoice')[index].textContent);
 
-									console.log(invoice_url_arr[index]);
+									// console.log();
 									var order_check_online_xhr = GM_xmlhttpRequest({
 										method:   'GET',
 										url   :   'http://adakok.com/api/order-exist' + '?' + 'order_url=' + invoice_url_arr[index] ,
