@@ -99,14 +99,15 @@
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);
-												GM_openInTab(invoice_url_arr[index]);
+												GM_openInTab(invoice_url_arr[index-1]);
 											};
 										}
 									})
 									index++;
 									console.log("TO send " + invoice_urls_tosend);
 									index < invoice_amount ? OrderExist() : clearTimeout(order_exist);
-								},3000)
+									index < 5 ? OrderExist() : clearTimeout(order_exist);
+								},500)
 						}
 					// return invoice_urls_tosend
 					}
