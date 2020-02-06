@@ -70,7 +70,7 @@
 						return invoice_urls_arr
 					}
 					var invoice_url_arr    = collect_invoice();
-					var index           = 0;
+					var index              = 0;
 					function OrderExist(){
 						var invoice_url_arr     = collect_invoice();
 						var invoice_amount      = invoice_url_arr.length;
@@ -83,6 +83,7 @@
 						function(){
 									var invoice_urls_tosend = [];
 									// var invoice_url_arr = collect_invoice();
+									console.log(index + '/' + document.querySelectorAll('a.invoice').length);
 									console.log('Hi ' + index + '/' +invoice_url_arr.length + ' = '+document.querySelectorAll('a.invoice')[index].textContent);
 
 									// console.log();
@@ -95,7 +96,7 @@
 											console.log(typeof result  + "=" + result.length + '=' +result);
 											if(result.length > 3){
 												invoice_urls_elem[index-1].style = 'color:blue;';
-												console.log('Yes, in, '+ document.querySelectorAll('a.invoice')[index-1].textContent)  + 'blue, colored');
+												console.log('Yes, in, '+ document.querySelectorAll('a.invoice')[index-1].textContent  + 'blue, colored. NEXT-');
 											}else{
 												invoice_urls_tosend.push(invoice_url_arr[index-1]);
 												console.log("TO send 1by1 " + invoice_urls_tosend);

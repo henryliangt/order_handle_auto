@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Tkpd invoice page Barcode + Order update
 // @namespace    http://www.tiaria.id/
-// @version      0.28
+// @version      0.29
 // @description  Handle tokopedia orders
 // @author       HL
 // @connect      www.tiaria.id
@@ -150,6 +150,7 @@
                 'seller'      : seller,
                 'order_number': new_order_number,
                 'order_url'   : new_order_url,
+                'order_print_url' : new_order_url,
                 'buyer'       : new_order_consignees.textContent,
                 'tel'         : new_order_tel,
                 'add'         : new_order_add,
@@ -281,6 +282,7 @@
                 'seller'         : seller,
                 'order_number'   : new_order_number,
                 'order_url'      : new_order_url,
+                'order_print_url' : new_order_url,
                 'buyer'          : new_order_consignees.textContent,
                 'tel'            : new_order_tel,
                 'add'            : new_order_add,
